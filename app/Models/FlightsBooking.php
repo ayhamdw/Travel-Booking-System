@@ -9,11 +9,6 @@ class FlightsBooking extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'flight_id',
-        'review_id'
-    ];
 
     public function user()
     {
@@ -27,6 +22,6 @@ class FlightsBooking extends Model
 
     public function review()
     {
-        return $this->morphOne(Review::class, 'reviewable');
+        return $this->belongsTo(Review::class);
     }
 }

@@ -1,4 +1,4 @@
- <?php
+<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,8 +20,6 @@ return new class extends Migration
             $table->text('description');
             $table->date('departure_date');
             $table->string('airline_name');
-            $table->string('picture_url'); // صورة طيارة
-
             $table->timestamps();
         });
 

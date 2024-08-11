@@ -9,15 +9,6 @@ class User extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'username',
-        'password',
-        'email',
-        'first_name',
-        'last_name',
-        'role'
-    ];
-
     public function carBookings()
     {
         return $this->hasMany(CarBooking::class);

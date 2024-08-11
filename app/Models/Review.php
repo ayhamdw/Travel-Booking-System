@@ -9,16 +9,19 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'comment',
-        'rating',
-        'reviewable_type',
-        'reviewable_id'
-    ];
-
-    public function reviewable()
+    public function carBooking()
     {
-        return $this->morphTo();
+        return $this->hasOne(CarBooking::class);
+    }
+
+    public function flightsBooking()
+    {
+        return $this->hasOne(FlightsBooking::class);
+    }
+
+    public function hotelsBooking()
+    {
+        return $this->hasOne(HotelsBooking::class);
     }
 }
 
