@@ -9,11 +9,19 @@ class Flight extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'departure',
+        'dest',
+        'price',
+        'seats_left',
+        'description',
+        'departure_date',
+        'airline_name'
+    ];
 
     public function flightsBookings()
     {
         return $this->hasMany(FlightsBooking::class);
     }
-
 
 }

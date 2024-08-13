@@ -9,10 +9,17 @@ class CarBooking extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'car_id',
+        'review_id',
+        'start_date',
+        'end_date'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
-
     }
 
     public function car()
@@ -22,6 +29,7 @@ class CarBooking extends Model
 
     public function review()
     {
-        return $this->belongsTo(Review::class);
+        return $this->morphOne(Review::class, 'reviewable');
     }
 }
+

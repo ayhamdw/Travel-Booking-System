@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Hotel extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'location',
+        'price_per_night',
+        'description',
+        'rating'
+    ];
 
     public function hotelsBookings()
     {

@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class HotelsBooking extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'hotel_id',
+        'review_id',
+        'start_date',
+        'end_date'
+    ];
 
     public function user()
     {
@@ -21,7 +28,6 @@ class HotelsBooking extends Model
 
     public function review()
     {
-        return $this->belongsTo(Review::class);
+        return $this->morphOne(Review::class, 'reviewable');
     }
-
 }
