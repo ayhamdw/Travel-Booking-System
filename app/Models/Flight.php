@@ -16,7 +16,8 @@ class Flight extends Model
         'seats_left',
         'description',
         'departure_date',
-        'airline_name'
+        'airline_name',
+        'picture_url'
     ];
 
     public function flightsBookings()
