@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('first_name');
             $table->string('last_name');
-            $table->tinyInteger('role'); // 0 for users and 1 for admins
+            $table->string('role'); // 0 for users and 1 for admins
             $table->timestamps();
         });
 
