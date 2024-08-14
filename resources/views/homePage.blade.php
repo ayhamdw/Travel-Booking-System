@@ -126,7 +126,7 @@
             <div class="goal col-md">
                 <header>
                     <img src="{{ asset('images/hoteljpg.jpg') }}" alt="Hotel Image" />
-                    <h4 class="goal__heading">Hotel Reservations</h4>
+                    <h4 class="goal__heading">Hotel Reservation</h4>
                 </header>
                 <div class="goal__content">
                     Choose from thousands of hotels for every type of traveler.
