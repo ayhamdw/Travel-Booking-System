@@ -54,3 +54,7 @@ Route::get('/reviews/hotel/stats', [ReviewController::class, 'getAllHotelReviewS
 
 
 
+
+
+
+
