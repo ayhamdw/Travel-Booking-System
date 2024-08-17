@@ -22,6 +22,11 @@ class Car extends Model
         'type'
     ];
 
+    public function reviews()
+    {
+        return $this->morphMany(Review::class, 'reviewable');
+    }
+
     public function carBookings()
     {
         return $this->hasMany(CarBooking::class);

@@ -28,6 +28,9 @@ class HotelsBooking extends Model
 
     public function review()
     {
-        return $this->morphOne(Review::class, 'reviewable');
+
+            return $this->belongsTo(Review::class, 'review_id');
+
     }
+
 }
