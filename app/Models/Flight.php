@@ -25,4 +25,9 @@ class Flight extends Model
         return $this->hasMany(FlightsBooking::class);
     }
 
+    public function reviews()
+    {
+        return $this->morphMany(Review::class, 'reviewable');
+    }
+
 }

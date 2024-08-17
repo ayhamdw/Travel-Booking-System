@@ -22,14 +22,12 @@ class CarBooking extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function car()
-    {
-        return $this->belongsTo(Car::class);
-    }
 
     public function review()
     {
-        return $this->morphOne(Review::class, 'reviewable');
+        return $this->belongsTo(Review::class);
     }
+
+
 }
 
