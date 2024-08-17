@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('flights', function (Blueprint $table) {
             $table->id();
-            $table->string('departure');
+            $table->string('departure'); // مكان الانطلاق
             $table->string('dest');
             $table->decimal('price', 8, 2);
-            $table->integer('seats_left');
+            $table->integer('seats_left'); // المقاعد المتبقية
             $table->text('description');
             $table->date('departure_date');
-            $table->string('airline_name');
+            $table->string('airline_name'); // اسم شركة الطيران
             $table->string('picture_url'); // صورة طيارة
 
             $table->timestamps();
