@@ -17,6 +17,10 @@ class User extends Model
         'last_name',
         'role'
     ];
+    
+    protected $hidden = [
+        'password',
+    ];
 
     public function carBookings()
     {
