@@ -52,7 +52,11 @@ Route::get('/reviews/flight/stats', [ReviewController::class, 'getAllFlightRevie
 Route::get('/reviews/hotel/stats', [ReviewController::class, 'getAllHotelReviewStats']);
 
 
-
+// Flight APIs
+Route::prefix('flights')->group(function () {
+    Route::get('/search/all' , '\App\Http\Controllers\FlightController@searchAll');
+    Route::get('/search/{from}/{to}/{departure}' , '\App\Http\Controllers\FlightController@search');
+});
 
 
 
