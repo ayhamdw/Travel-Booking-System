@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
-
+use App\Http\Controllers\UserController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -51,40 +51,7 @@ Route::get('/reviews/cars/stats', [ReviewController::class, 'getAllCarReviewStat
 Route::get('/reviews/flight/stats', [ReviewController::class, 'getAllFlightReviewStats']);
 Route::get('/reviews/hotel/stats', [ReviewController::class, 'getAllHotelReviewStats']);
 
-
-// Flight APIs
-Route::prefix('flights')->group(function () {
-    Route::get('/search/all' , '\App\Http\Controllers\FlightController@searchAll');
-    Route::get('/search/{from}/{to}/{departure}' , '\App\Http\Controllers\FlightController@search');
-    Route::get('/search/booking/' , '\App\Http\Controllers\FlightController@searchBooking');
-    Route::get('/search/review/' , '\App\Http\Controllers\FlightController@searchReview');
-
-    Route::post('/book/' , '\App\Http\Controllers\FlightController@addBookingFlight');
-    Route::post('/review/' , '\App\Http\Controllers\FlightController@addReviewFlight');
-
-    Route::put('/booking/edit/' , '\App\Http\Controllers\FlightController@editBookingFlight');
-    Route::put('/review/edit' , '\App\Http\Controllers\FlightController@editReviewFlight');
-
-    Route::delete('/booking/delete/' , '\App\Http\Controllers\FlightController@deleteBookingFlight');
-    Route::delete('/review/delete/' , '\App\Http\Controllers\FlightController@deleteReviewFlight');
-});
-
-Route::prefix('hotels')->group(function () {
-    Route::get('/search/all' , '\App\Http\Controllers\HotelController@searchAll');
-    Route::get('/search/{name}/{location}/{rating}' , '\App\Http\Controllers\HotelController@search');
-    Route::get('/search/booking/' , '\App\Http\Controllers\HotelController@searchBooking');
-    Route::get('/search/review/' , '\App\Http\Controllers\HotelController@searchReview');
-
-    Route::post('/book/' , '\App\Http\Controllers\HotelController@addBookingHotel');
-    Route::post('/review/' , '\App\Http\Controllers\HotelController@addReviewHotel');
-
-    Route::put('/booking/edit/' , '\App\Http\Controllers\HotelController@editBookingHotel');
-    Route::put('/review/edit' , '\App\Http\Controllers\HotelController@editReviewHotel');
-
-    Route::delete('/booking/delete/' , '\App\Http\Controllers\HotelController@deleteBookingHotel');
-    Route::delete('/review/delete/' , '\App\Http\Controllers\HotelController@deleteReviewHotel');
-});
-
+Route::post('/users/register', [UserController::class, 'store']);
 
 
 
