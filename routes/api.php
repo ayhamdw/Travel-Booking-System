@@ -56,6 +56,17 @@ Route::get('/reviews/hotel/stats', [ReviewController::class, 'getAllHotelReviewS
 Route::prefix('flights')->group(function () {
     Route::get('/search/all' , '\App\Http\Controllers\FlightController@searchAll');
     Route::get('/search/{from}/{to}/{departure}' , '\App\Http\Controllers\FlightController@search');
+    Route::get('/search/booking/' , '\App\Http\Controllers\FlightController@searchBooking');
+    Route::get('/search/review/' , '\App\Http\Controllers\FlightController@searchReview');
+
+    Route::post('/book/' , '\App\Http\Controllers\FlightController@addBookingFlight');
+    Route::post('/review/' , '\App\Http\Controllers\FlightController@addReviewFlight');
+
+    Route::put('/booking/edit/' , '\App\Http\Controllers\FlightController@editBookingFlight');
+    Route::put('/review/edit' , '\App\Http\Controllers\FlightController@editReviewFlight');
+
+    Route::delete('/booking/delete/' , '\App\Http\Controllers\FlightController@deleteBookingFlight');
+    Route::delete('/review/delete/' , '\App\Http\Controllers\FlightController@deleteReviewFlight');
 });
 
 
