@@ -1,5 +1,5 @@
 <?php
-
+// Author: Abbas Dweikat
 namespace App\Http\Controllers;
 
 
@@ -10,16 +10,7 @@ use App\Models\Flight;
 use App\Models\Hotel;
 
 
-/**
- * @OA\Info(
- *     title="Travel Booking System API",
- *     version="1.0.0",
- *     description="API documentation for the Travel Booking System project.",
- *     @OA\Contact(
- *         email="support@example.com"
- *     )
- * )
- */
+
 class ReviewController extends Controller
 {
     /**
