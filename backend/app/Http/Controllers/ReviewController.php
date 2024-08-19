@@ -1,5 +1,5 @@
 <?php
-
+// Author: Abbas Dweikat
 namespace App\Http\Controllers;
 
 
@@ -9,9 +9,47 @@ use App\Models\Car;
 use App\Models\Flight;
 use App\Models\Hotel;
 
+
+
 class ReviewController extends Controller
 {
-
+    /**
+     * @OA\Post(
+     *     path="/cars/{carId}/reviews",
+     *     summary="Add a review for a car",
+     *     tags={"Reviews"},
+     *     @OA\Parameter(
+     *         name="carId",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="ID of the car"
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"comment", "rating"},
+     *             @OA\Property(property="comment", type="string", example="Great car!"),
+     *             @OA\Property(property="rating", type="integer", example=5)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Review created successfully",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="id", type="integer"),
+     *             @OA\Property(property="comment", type="string"),
+     *             @OA\Property(property="rating", type="integer"),
+     *             @OA\Property(property="reviewable_type", type="string"),
+     *             @OA\Property(property="reviewable_id", type="integer")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid input"
+     *     )
+     * )
+     */
 
     public function addCarReview(Request $request, $carId)
     {
@@ -45,7 +83,43 @@ class ReviewController extends Controller
         return response()->json($review, 201);
     }
 
-
+    /**
+     * @OA\Post(
+     *     path="/flights/{flightId}/reviews",
+     *     summary="Add a review for a flight",
+     *     tags={"Reviews"},
+     *     @OA\Parameter(
+     *         name="flightId",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="ID of the flight"
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"comment", "rating"},
+     *             @OA\Property(property="comment", type="string", example="Amazing flight!"),
+     *             @OA\Property(property="rating", type="integer", example=4)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Review created successfully",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="id", type="integer"),
+     *             @OA\Property(property="comment", type="string"),
+     *             @OA\Property(property="rating", type="integer"),
+     *             @OA\Property(property="reviewable_type", type="string"),
+     *             @OA\Property(property="reviewable_id", type="integer")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid input"
+     *     )
+     * )
+     */
     public function addFlightReview(Request $request, $flightId)
     {
         $validated = $request->validate([
@@ -63,6 +137,43 @@ class ReviewController extends Controller
         return response()->json($review, 201);
     }
 
+    /**
+     * @OA\Post(
+     *     path="/hotels/{hotelId}/reviews",
+     *     summary="Add a review for a hotel",
+     *     tags={"Reviews"},
+     *     @OA\Parameter(
+     *         name="hotelId",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="ID of the hotel"
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"comment", "rating"},
+     *             @OA\Property(property="comment", type="string", example="Nice hotel!"),
+     *             @OA\Property(property="rating", type="integer", example=3)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Review created successfully",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="id", type="integer"),
+     *             @OA\Property(property="comment", type="string"),
+     *             @OA\Property(property="rating", type="integer"),
+     *             @OA\Property(property="reviewable_type", type="string"),
+     *             @OA\Property(property="reviewable_id", type="integer")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid input"
+     *     )
+     * )
+     */
     public function addHotelReview(Request $request, $hotelId)
     {
         $validated = $request->validate([
@@ -79,7 +190,47 @@ class ReviewController extends Controller
 
         return response()->json($review, 201);
     }
-
+    /**
+     * @OA\Put(
+     *     path="/reviews/cars/{reviewId}",
+     *     summary="Update a car review",
+     *     tags={"Reviews"},
+     *     @OA\Parameter(
+     *         name="reviewId",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="ID of the review"
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"comment", "rating"},
+     *             @OA\Property(property="comment", type="string", example="Updated review comment"),
+     *             @OA\Property(property="rating", type="integer", example=4)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Review updated successfully",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="id", type="integer"),
+     *             @OA\Property(property="comment", type="string"),
+     *             @OA\Property(property="rating", type="integer"),
+     *             @OA\Property(property="reviewable_type", type="string"),
+     *             @OA\Property(property="reviewable_id", type="integer")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Review not found"
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid input"
+     *     )
+     * )
+     */
     public function updateCarReview(Request $request, $reviewId)
     {
         $validated = $request->validate([
@@ -97,7 +248,47 @@ class ReviewController extends Controller
 
         return response()->json($review, 200);
     }
-
+    /**
+     * @OA\Put(
+     *     path="/reviews/flights/{reviewId}",
+     *     summary="Update a flight review",
+     *     tags={"Reviews"},
+     *     @OA\Parameter(
+     *         name="reviewId",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="ID of the review"
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"comment", "rating"},
+     *             @OA\Property(property="comment", type="string", example="Updated review comment"),
+     *             @OA\Property(property="rating", type="integer", example=4)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Review updated successfully",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="id", type="integer"),
+     *             @OA\Property(property="comment", type="string"),
+     *             @OA\Property(property="rating", type="integer"),
+     *             @OA\Property(property="reviewable_type", type="string"),
+     *             @OA\Property(property="reviewable_id", type="integer")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Review not found"
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid input"
+     *     )
+     * )
+     */
     public function updateFlightReview(Request $request, $reviewId)
     {
         $validated = $request->validate([
@@ -115,7 +306,47 @@ class ReviewController extends Controller
 
         return response()->json($review, 200);
     }
-
+    /**
+     * @OA\Put(
+     *     path="/reviews/hotels/{reviewId}",
+     *     summary="Update a hotel review",
+     *     tags={"Reviews"},
+     *     @OA\Parameter(
+     *         name="reviewId",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="ID of the review"
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"comment", "rating"},
+     *             @OA\Property(property="comment", type="string", example="Updated review comment"),
+     *             @OA\Property(property="rating", type="integer", example=4)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Review updated successfully",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="id", type="integer"),
+     *             @OA\Property(property="comment", type="string"),
+     *             @OA\Property(property="rating", type="integer"),
+     *             @OA\Property(property="reviewable_type", type="string"),
+     *             @OA\Property(property="reviewable_id", type="integer")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Review not found"
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid input"
+     *     )
+     * )
+     */
     public function updateHotelReview(Request $request, $reviewId)
     {
         $validated = $request->validate([
@@ -134,6 +365,28 @@ class ReviewController extends Controller
         return response()->json($review, 200);
     }
 
+    /**
+     * @OA\Delete(
+     *     path="/Delete/reviews/cars/{reviewId}",
+     *     summary="Delete a review",
+     *     tags={"Reviews"},
+     *     @OA\Parameter(
+     *         name="reviewId",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="ID of the review"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Review deleted successfully"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Review not found"
+     *     )
+     * )
+     */
     public function deleteCarReview($reviewId)
     {
         $review = Review::where('reviewable_type', 'App\Models\Car')
@@ -144,7 +397,28 @@ class ReviewController extends Controller
         return response()->json(['message' => 'Review deleted successfully.'], 200);
     }
 
-
+    /**
+     * @OA\Delete(
+     *     path="/Delete/reviews/flights/{reviewId}",
+     *     summary="Delete a review",
+     *     tags={"Reviews"},
+     *     @OA\Parameter(
+     *         name="reviewId",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="ID of the review"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Review deleted successfully"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Review not found"
+     *     )
+     * )
+     */
     public function deleteFlightReview($reviewId)
     {
         $review = Review::where('reviewable_type', 'App\Models\Flight')
@@ -155,7 +429,28 @@ class ReviewController extends Controller
         return response()->json(['message' => 'Review deleted successfully.'], 200);
     }
 
-
+    /**
+     * @OA\Delete(
+     *     path="/Delete/reviews/hotels/{reviewId}",
+     *     summary="Delete a review",
+     *     tags={"Reviews"},
+     *     @OA\Parameter(
+     *         name="reviewId",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="ID of the review"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Review deleted successfully"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Review not found"
+     *     )
+     * )
+     */
     public function deleteHotelReview($reviewId)
     {
         $review = Review::where('reviewable_type', 'App\Models\Hotel')
@@ -166,6 +461,33 @@ class ReviewController extends Controller
         return response()->json(['message' => 'Review deleted successfully.'], 200);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/reviews/cars/{carId}/AvgAndCount",
+     *     summary="Get review count and average rating for a specific car",
+     *     tags={"Reviews"},
+     *     @OA\Parameter(
+     *         name="carId",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="ID of the car"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Review count and average rating for the car",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="car_id", type="integer"),
+     *             @OA\Property(property="number_of_reviews", type="integer"),
+     *             @OA\Property(property="average_rating", type="number")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Car not found"
+     *     )
+     * )
+     */
 
     public function getCarReviewStats($carId)
     {
@@ -184,6 +506,33 @@ class ReviewController extends Controller
             'average_rating' => $averageRating,
         ], 200);
     }
+    /**
+     * @OA\Get(
+     *     path="/reviews/flights/{flightId}/AvgAndCount",
+     *     summary="Get review count and average rating for a specific flight",
+     *     tags={"Reviews"},
+     *     @OA\Parameter(
+     *         name="flightId",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="ID of the flight"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Review count and average rating for the flight",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="flight_id", type="integer"),
+     *             @OA\Property(property="number_of_reviews", type="integer"),
+     *             @OA\Property(property="average_rating", type="number")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Flight not found"
+     *     )
+     * )
+     */
 
     // Get the number of reviews and average rating for a flight
     public function getFlightReviewStats($flightId)
@@ -203,6 +552,33 @@ class ReviewController extends Controller
             'average_rating' => $averageRating,
         ], 200);
     }
+    /**
+     * @OA\Get(
+     *     path="/reviews/hotels/{hotelId}/AvgAndCount",
+     *     summary="Get review count and average rating for a specific hotel",
+     *     tags={"Reviews"},
+     *     @OA\Parameter(
+     *         name="hotelId",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="ID of the hotel"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Review count and average rating for the hotel",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="hotel_id", type="integer"),
+     *             @OA\Property(property="number_of_reviews", type="integer"),
+     *             @OA\Property(property="average_rating", type="number")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Hotel not found"
+     *     )
+     * )
+     */
 
     // Get the number of reviews and average rating for a hotel
     public function getHotelReviewStats($hotelId)
@@ -222,7 +598,38 @@ class ReviewController extends Controller
             'average_rating' => $averageRating,
         ], 200);
     }
-
+    /**
+     * @OA\Get(
+     *     path="/cars/{carId}/reviews",
+     *     summary="Get all reviews for a car",
+     *     tags={"Reviews"},
+     *     @OA\Parameter(
+     *         name="carId",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="ID of the car"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="List of reviews",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 @OA\Property(property="id", type="integer"),
+     *                 @OA\Property(property="comment", type="string"),
+     *                 @OA\Property(property="rating", type="integer"),
+     *                 @OA\Property(property="reviewable_type", type="string"),
+     *                 @OA\Property(property="reviewable_id", type="integer")
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Car not found"
+     *     )
+     * )
+     */
     public function getCarReviews($carId)
     {
         $car = Car::find($carId);
@@ -247,6 +654,38 @@ class ReviewController extends Controller
             return response()->json(['error' => 'An error occurred: ' . $e->getMessage()], 500);
         }
     }
+    /**
+     * @OA\Get(
+     *     path="/hotels/{hotelId}/reviews",
+     *     summary="Get all reviews for a hotel",
+     *     tags={"Reviews"},
+     *     @OA\Parameter(
+     *         name="hotelId",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="ID of the hotel"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="List of reviews",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 @OA\Property(property="id", type="integer"),
+     *                 @OA\Property(property="comment", type="string"),
+     *                 @OA\Property(property="rating", type="integer"),
+     *                 @OA\Property(property="reviewable_type", type="string"),
+     *                 @OA\Property(property="reviewable_id", type="integer")
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Hotel not found"
+     *     )
+     * )
+     */
 
     public function getHotelReviews($hotelId)
     {
@@ -273,7 +712,38 @@ class ReviewController extends Controller
         }
     }
 
-
+    /**
+     * @OA\Get(
+     *     path="/flights/{flightId}/reviews",
+     *     summary="Get all reviews for a flight",
+     *     tags={"Reviews"},
+     *     @OA\Parameter(
+     *         name="flightId",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="ID of the flight"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="List of reviews",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 @OA\Property(property="id", type="integer"),
+     *                 @OA\Property(property="comment", type="string"),
+     *                 @OA\Property(property="rating", type="integer"),
+     *                 @OA\Property(property="reviewable_type", type="string"),
+     *                 @OA\Property(property="reviewable_id", type="integer")
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Flight not found"
+     *     )
+     * )
+     */
     public function getFlightReviews($flightId)
     {
         $flight = Flight::find($flightId);
@@ -300,6 +770,37 @@ class ReviewController extends Controller
     }
 
 
+    /**
+     * @OA\Get(
+     *     path="/reviews/cars/stats",
+     *     summary="Get review statistics for all cars",
+     *     tags={"Reviews"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Statistics for all cars",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 @OA\Property(property="car", type="object",
+     *                     @OA\Property(property="id", type="integer"),
+     *                     @OA\Property(property="brand", type="string"),
+     *                     @OA\Property(property="man_date", type="string"),
+     *                     @OA\Property(property="price_per_hour", type="number"),
+     *                     @OA\Property(property="colour", type="string"),
+     *                     @OA\Property(property="picture_url", type="string"),
+     *                     @OA\Property(property="type", type="string")
+     *                 ),
+     *                 @OA\Property(property="number_of_reviews", type="integer"),
+     *                 @OA\Property(property="average_rating", type="number")
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="No cars found"
+     *     )
+     * )
+     */
 
     public function getAllCarReviewStats()
     {
@@ -334,6 +835,36 @@ class ReviewController extends Controller
 
         return response()->json($carStats, 200);
     }
+    /**
+     * @OA\Get(
+     *     path="/reviews/flight/stats",
+     *     summary="Get review statistics for all flights",
+     *     tags={"Reviews"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Statistics for all flights",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 @OA\Property(property="flight", type="object",
+     *                     @OA\Property(property="id", type="integer"),
+     *                     @OA\Property(property="flight_number", type="string"),
+     *                     @OA\Property(property="departure_date", type="string"),
+     *                     @OA\Property(property="arrival_date", type="string"),
+     *                     @OA\Property(property="price", type="number"),
+     *                     @OA\Property(property="airline", type="string")
+     *                 ),
+     *                 @OA\Property(property="number_of_reviews", type="integer"),
+     *                 @OA\Property(property="average_rating", type="number")
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="No flights found"
+     *     )
+     * )
+     */
 
     public function getAllFlightReviewStats()
     {
@@ -367,6 +898,38 @@ class ReviewController extends Controller
 
         return response()->json($flightStats, 200);
     }
+
+    /**
+     * @OA\Get(
+     *     path="/reviews/hotel/stats",
+     *     summary="Get review statistics for all hotels",
+     *     tags={"Reviews"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Statistics for all hotels",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 @OA\Property(property="hotel", type="object",
+     *                     @OA\Property(property="id", type="integer"),
+     *                     @OA\Property(property="name", type="string"),
+     *                     @OA\Property(property="location", type="string"),
+     *                     @OA\Property(property="price_per_night", type="number"),
+     *                     @OA\Property(property="rating", type="number"),
+     *                     @OA\Property(property="picture_url", type="string")
+     *                 ),
+     *                 @OA\Property(property="number_of_reviews", type="integer"),
+     *                 @OA\Property(property="average_rating", type="number")
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="No hotels found"
+     *     )
+     * )
+     */
+
     public function getAllHotelReviewStats()
     {
         $hotels = Hotel::all();
