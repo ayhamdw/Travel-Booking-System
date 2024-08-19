@@ -1,0 +1,1042 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Travel Booking System API",
+        "description": "API documentation for the Travel Booking System project.",
+        "contact": {
+            "email": "support@example.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/cars/{carId}/reviews": {
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Get all reviews for a car",
+                "operationId": "d2bfa1341f87761db30ff9498f8e31e8",
+                "parameters": [
+                    {
+                        "name": "carId",
+                        "in": "path",
+                        "description": "ID of the car",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of reviews",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "comment": {
+                                                "type": "string"
+                                            },
+                                            "rating": {
+                                                "type": "integer"
+                                            },
+                                            "reviewable_type": {
+                                                "type": "string"
+                                            },
+                                            "reviewable_id": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Car not found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Add a review for a car",
+                "operationId": "4844cd3130076c1a0a6705024d94c8c8",
+                "parameters": [
+                    {
+                        "name": "carId",
+                        "in": "path",
+                        "description": "ID of the car",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "comment",
+                                    "rating"
+                                ],
+                                "properties": {
+                                    "comment": {
+                                        "type": "string",
+                                        "example": "Great car!"
+                                    },
+                                    "rating": {
+                                        "type": "integer",
+                                        "example": 5
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Review created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "comment": {
+                                            "type": "string"
+                                        },
+                                        "rating": {
+                                            "type": "integer"
+                                        },
+                                        "reviewable_type": {
+                                            "type": "string"
+                                        },
+                                        "reviewable_id": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/flights/{flightId}/reviews": {
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Get all reviews for a flight",
+                "operationId": "7dac578147a53f6ffb6cd28a74806cdf",
+                "parameters": [
+                    {
+                        "name": "flightId",
+                        "in": "path",
+                        "description": "ID of the flight",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of reviews",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "comment": {
+                                                "type": "string"
+                                            },
+                                            "rating": {
+                                                "type": "integer"
+                                            },
+                                            "reviewable_type": {
+                                                "type": "string"
+                                            },
+                                            "reviewable_id": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Flight not found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Add a review for a flight",
+                "operationId": "88b80b2fa3ff01131bc1907c2ab71ace",
+                "parameters": [
+                    {
+                        "name": "flightId",
+                        "in": "path",
+                        "description": "ID of the flight",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "comment",
+                                    "rating"
+                                ],
+                                "properties": {
+                                    "comment": {
+                                        "type": "string",
+                                        "example": "Amazing flight!"
+                                    },
+                                    "rating": {
+                                        "type": "integer",
+                                        "example": 4
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Review created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "comment": {
+                                            "type": "string"
+                                        },
+                                        "rating": {
+                                            "type": "integer"
+                                        },
+                                        "reviewable_type": {
+                                            "type": "string"
+                                        },
+                                        "reviewable_id": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/hotels/{hotelId}/reviews": {
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Get all reviews for a hotel",
+                "operationId": "dc8d1431f2eb5a85cd179ebf505861e1",
+                "parameters": [
+                    {
+                        "name": "hotelId",
+                        "in": "path",
+                        "description": "ID of the hotel",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of reviews",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "comment": {
+                                                "type": "string"
+                                            },
+                                            "rating": {
+                                                "type": "integer"
+                                            },
+                                            "reviewable_type": {
+                                                "type": "string"
+                                            },
+                                            "reviewable_id": {
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Hotel not found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Add a review for a hotel",
+                "operationId": "9c9f47c4b11112c1af4d9ccad0bf4b72",
+                "parameters": [
+                    {
+                        "name": "hotelId",
+                        "in": "path",
+                        "description": "ID of the hotel",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "comment",
+                                    "rating"
+                                ],
+                                "properties": {
+                                    "comment": {
+                                        "type": "string",
+                                        "example": "Nice hotel!"
+                                    },
+                                    "rating": {
+                                        "type": "integer",
+                                        "example": 3
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Review created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "comment": {
+                                            "type": "string"
+                                        },
+                                        "rating": {
+                                            "type": "integer"
+                                        },
+                                        "reviewable_type": {
+                                            "type": "string"
+                                        },
+                                        "reviewable_id": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/reviews/cars/{reviewId}": {
+            "put": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Update a car review",
+                "operationId": "a748308cf129b65557b7ccc1a06e609d",
+                "parameters": [
+                    {
+                        "name": "reviewId",
+                        "in": "path",
+                        "description": "ID of the review",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "comment",
+                                    "rating"
+                                ],
+                                "properties": {
+                                    "comment": {
+                                        "type": "string",
+                                        "example": "Updated review comment"
+                                    },
+                                    "rating": {
+                                        "type": "integer",
+                                        "example": 4
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Review updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "comment": {
+                                            "type": "string"
+                                        },
+                                        "rating": {
+                                            "type": "integer"
+                                        },
+                                        "reviewable_type": {
+                                            "type": "string"
+                                        },
+                                        "reviewable_id": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Review not found"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/reviews/flights/{reviewId}": {
+            "put": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Update a flight review",
+                "operationId": "99b00490336de5dbe2dd0ebff09cda97",
+                "parameters": [
+                    {
+                        "name": "reviewId",
+                        "in": "path",
+                        "description": "ID of the review",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "comment",
+                                    "rating"
+                                ],
+                                "properties": {
+                                    "comment": {
+                                        "type": "string",
+                                        "example": "Updated review comment"
+                                    },
+                                    "rating": {
+                                        "type": "integer",
+                                        "example": 4
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Review updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "comment": {
+                                            "type": "string"
+                                        },
+                                        "rating": {
+                                            "type": "integer"
+                                        },
+                                        "reviewable_type": {
+                                            "type": "string"
+                                        },
+                                        "reviewable_id": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Review not found"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/reviews/hotels/{reviewId}": {
+            "put": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Update a hotel review",
+                "operationId": "c37568322b54b08197920dae94752d30",
+                "parameters": [
+                    {
+                        "name": "reviewId",
+                        "in": "path",
+                        "description": "ID of the review",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "comment",
+                                    "rating"
+                                ],
+                                "properties": {
+                                    "comment": {
+                                        "type": "string",
+                                        "example": "Updated review comment"
+                                    },
+                                    "rating": {
+                                        "type": "integer",
+                                        "example": 4
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Review updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "comment": {
+                                            "type": "string"
+                                        },
+                                        "rating": {
+                                            "type": "integer"
+                                        },
+                                        "reviewable_type": {
+                                            "type": "string"
+                                        },
+                                        "reviewable_id": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Review not found"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/Delete/reviews/cars/{reviewId}": {
+            "delete": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Delete a review",
+                "operationId": "0aea54291c979183fefdd2e7157e66bc",
+                "parameters": [
+                    {
+                        "name": "reviewId",
+                        "in": "path",
+                        "description": "ID of the review",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Review deleted successfully"
+                    },
+                    "404": {
+                        "description": "Review not found"
+                    }
+                }
+            }
+        },
+        "/Delete/reviews/flights/{reviewId}": {
+            "delete": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Delete a review",
+                "operationId": "6505cf7ac23e8fe9e32fd0e6392445f4",
+                "parameters": [
+                    {
+                        "name": "reviewId",
+                        "in": "path",
+                        "description": "ID of the review",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Review deleted successfully"
+                    },
+                    "404": {
+                        "description": "Review not found"
+                    }
+                }
+            }
+        },
+        "/Delete/reviews/hotels/{reviewId}": {
+            "delete": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Delete a review",
+                "operationId": "2df7bc6f6b06395a9df82917edf3bd8c",
+                "parameters": [
+                    {
+                        "name": "reviewId",
+                        "in": "path",
+                        "description": "ID of the review",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Review deleted successfully"
+                    },
+                    "404": {
+                        "description": "Review not found"
+                    }
+                }
+            }
+        },
+        "/reviews/cars/{carId}/AvgAndCount": {
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Get review count and average rating for a specific car",
+                "operationId": "f1dc2928eac93132418be730d51a7d28",
+                "parameters": [
+                    {
+                        "name": "carId",
+                        "in": "path",
+                        "description": "ID of the car",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Review count and average rating for the car",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "car_id": {
+                                            "type": "integer"
+                                        },
+                                        "number_of_reviews": {
+                                            "type": "integer"
+                                        },
+                                        "average_rating": {
+                                            "type": "number"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Car not found"
+                    }
+                }
+            }
+        },
+        "/reviews/flights/{flightId}/AvgAndCount": {
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Get review count and average rating for a specific flight",
+                "operationId": "021a018f5bdb04619a6dc7574703ff99",
+                "parameters": [
+                    {
+                        "name": "flightId",
+                        "in": "path",
+                        "description": "ID of the flight",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Review count and average rating for the flight",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "flight_id": {
+                                            "type": "integer"
+                                        },
+                                        "number_of_reviews": {
+                                            "type": "integer"
+                                        },
+                                        "average_rating": {
+                                            "type": "number"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Flight not found"
+                    }
+                }
+            }
+        },
+        "/reviews/hotels/{hotelId}/AvgAndCount": {
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Get review count and average rating for a specific hotel",
+                "operationId": "172c7dcc049cf504736f85b24dedd980",
+                "parameters": [
+                    {
+                        "name": "hotelId",
+                        "in": "path",
+                        "description": "ID of the hotel",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Review count and average rating for the hotel",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "hotel_id": {
+                                            "type": "integer"
+                                        },
+                                        "number_of_reviews": {
+                                            "type": "integer"
+                                        },
+                                        "average_rating": {
+                                            "type": "number"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Hotel not found"
+                    }
+                }
+            }
+        },
+        "/reviews/cars/stats": {
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Get review statistics for all cars",
+                "operationId": "84ca6996c4f1dcc98da0f34ce061268d",
+                "responses": {
+                    "200": {
+                        "description": "Statistics for all cars",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "car": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "brand": {
+                                                        "type": "string"
+                                                    },
+                                                    "man_date": {
+                                                        "type": "string"
+                                                    },
+                                                    "price_per_hour": {
+                                                        "type": "number"
+                                                    },
+                                                    "colour": {
+                                                        "type": "string"
+                                                    },
+                                                    "picture_url": {
+                                                        "type": "string"
+                                                    },
+                                                    "type": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "number_of_reviews": {
+                                                "type": "integer"
+                                            },
+                                            "average_rating": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No cars found"
+                    }
+                }
+            }
+        },
+        "/reviews/flight/stats": {
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Get review statistics for all flights",
+                "operationId": "d482e77cd1dad7b82ceb651ed4960640",
+                "responses": {
+                    "200": {
+                        "description": "Statistics for all flights",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "flight": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "flight_number": {
+                                                        "type": "string"
+                                                    },
+                                                    "departure_date": {
+                                                        "type": "string"
+                                                    },
+                                                    "arrival_date": {
+                                                        "type": "string"
+                                                    },
+                                                    "price": {
+                                                        "type": "number"
+                                                    },
+                                                    "airline": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "number_of_reviews": {
+                                                "type": "integer"
+                                            },
+                                            "average_rating": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No flights found"
+                    }
+                }
+            }
+        },
+        "/reviews/hotel/stats": {
+            "get": {
+                "tags": [
+                    "Reviews"
+                ],
+                "summary": "Get review statistics for all hotels",
+                "operationId": "bbd9837281f09af67cb1de877c2e1a83",
+                "responses": {
+                    "200": {
+                        "description": "Statistics for all hotels",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "hotel": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "location": {
+                                                        "type": "string"
+                                                    },
+                                                    "price_per_night": {
+                                                        "type": "number"
+                                                    },
+                                                    "rating": {
+                                                        "type": "number"
+                                                    },
+                                                    "picture_url": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "number_of_reviews": {
+                                                "type": "integer"
+                                            },
+                                            "average_rating": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No hotels found"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Reviews",
+            "description": "Reviews"
+        }
+    ]
+}
