@@ -61,8 +61,8 @@ Route::prefix('flights')->group(function () {
     Route::get('/search/booking/{user_id}' , '\App\Http\Controllers\FlightsBookingController@searchBookingFlights');
     Route::get('/search/review/{flight_id}' , '\App\Http\Controllers\FlightController@flightReview');
 
-    Route::post('/book/' , '\App\Http\Controllers\FlightsBookingController@addBookingFlight');
-    Route::post('/review/' , '\App\Http\Controllers\FlightController@addReviewFlight');
+    Route::post('/booking' , '\App\Http\Controllers\FlightsBookingController@addBookingFlight');
+    Route::post('/review/{flightId}/{userId}' , '\App\Http\Controllers\FlightsBookingController@addFlightReview');
 
     Route::put('/booking/edit/' , '\App\Http\Controllers\FlightController@editBookingFlight');
     Route::put('/review/edit' , '\App\Http\Controllers\FlightController@editReviewFlight');
