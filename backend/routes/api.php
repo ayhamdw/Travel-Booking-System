@@ -104,6 +104,33 @@ Route::prefix('cars')->group(function () {
     Route::delete('/review/delete/' , '\App\Http\Controllers\CarController@deleteReviewCar');
 });
 
+//lists
+
+Route::get('/cars', [App\Http\Controllers\CarController::class, 'listCars']);
+Route::get('/hotels', [App\Http\Controllers\HotelController::class, 'listHotels']);
+Route::get('/flights', [App\Http\Controllers\FlightController::class, 'listFlights']);
+Route::get('/reviews', [App\Http\Controllers\ReviewController::class, 'listReviews']);
+
+
+//booking lists
+Route::get('/car-bookings', [App\Http\Controllers\CarBookingController::class, 'listCarBookings']);
+Route::get('/hotel-bookings', [App\Http\Controllers\HotelsBookingController::class, 'listHotelBookings']);
+Route::get('/flight-bookings', [App\Http\Controllers\FlightsBookingController::class, 'listFlightBookings']);
+
+//add
+Route::post('/addcar', [App\Http\Controllers\CarController::class, 'addCar']);
+Route::post('/addhotel', [App\Http\Controllers\HotelController::class, 'addHotel']);
+Route::post('/addflight', [App\Http\Controllers\FlightController::class, 'addFlight']);
+
+//update
+Route::put('/cars/{car}', [App\Http\Controllers\CarController::class, 'updateCar']);
+Route::put('/hotels/{hotel}', [App\Http\Controllers\HotelController::class, 'updateHotel']);
+Route::put('/flights/{flight}', [App\Http\Controllers\FlightController::class, 'updateFlight']);
+
+Route::delete('/cars/{car}', [App\Http\Controllers\CarController::class, 'deleteCar']);
+Route::delete('/hotels/{hotel}', [App\Http\Controllers\HotelController::class, 'deleteHotel']);
+Route::delete('/flights/{flight}', [App\Http\Controllers\FlightController::class, 'deleteFlight']);
+
 
 
 
