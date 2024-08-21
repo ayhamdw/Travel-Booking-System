@@ -58,10 +58,10 @@ Route::post('/users/register', [UserController::class, 'store']);
 Route::prefix('flights')->group(function () {
     Route::get('/search/all' , '\App\Http\Controllers\FlightController@searchAll');
     Route::get('/search/{from}/{to}/{departure}' , '\App\Http\Controllers\FlightController@search');
-    Route::get('/search/booking/' , '\App\Http\Controllers\FlightController@searchBooking');
-    Route::get('/search/review/' , '\App\Http\Controllers\FlightController@searchReview');
+    Route::get('/search/booking/{user_id}' , '\App\Http\Controllers\FlightsBookingController@searchBookingFlights');
+    Route::get('/search/review/{flight_id}' , '\App\Http\Controllers\FlightController@flightReview');
 
-    Route::post('/book/' , '\App\Http\Controllers\FlightController@addBookingFlight');
+    Route::post('/book/' , '\App\Http\Controllers\FlightsBookingController@addBookingFlight');
     Route::post('/review/' , '\App\Http\Controllers\FlightController@addReviewFlight');
 
     Route::put('/booking/edit/' , '\App\Http\Controllers\FlightController@editBookingFlight');

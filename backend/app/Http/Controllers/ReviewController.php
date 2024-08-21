@@ -970,6 +970,8 @@ class ReviewController extends Controller
 
         return response()->json($hotelStats, 200);
     }
+
+
 }
 
 

@@ -15,6 +15,7 @@ class FlightsBooking extends Model
         'review_id'
     ];
 
+
     public function user()
     {
         return $this->belongsTo(User::class);
