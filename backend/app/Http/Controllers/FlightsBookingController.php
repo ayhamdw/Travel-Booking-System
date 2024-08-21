@@ -6,6 +6,10 @@ use App\Models\CarBooking;
 use App\Models\Flight;
 use App\Models\FlightsBooking;
 use Illuminate\Http\Request;
+use App\Models\FlightsBooking;
+
+
+
 
 class FlightsBookingController extends Controller
 {

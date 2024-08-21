@@ -13,6 +13,14 @@ use App\Models\Hotel;
 
 class ReviewController extends Controller
 {
+
+    //reviews list
+    public function listReviews(): \Illuminate\Http\JsonResponse
+    {
+        $reviews = Review::all();
+        return response()->json($reviews);
+    }
+
     /**
      * @OA\Post(
      *     path="/cars/{carId}/reviews",

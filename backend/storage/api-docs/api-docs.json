@@ -6,6 +6,891 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/car-bookings": {
+            "get": {
+                "tags": [
+                    "Car Bookings"
+                ],
+                "summary": "Get car bookings list",
+                "operationId": "1589f06706341ae1d7c1f3ac5b25b502",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "default": {
+                        "description": "An unexpected error occurred"
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/api/cars": {
+            "get": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Get cars list",
+                "operationId": "47a70b6e2d3529af571ece0076e4215e",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "default": {
+                        "description": "An unexpected error occurred"
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Add a new car",
+                "operationId": "08d74563a60f3b01c5f2d87f25cddd7b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "brand",
+                                    "man_date",
+                                    "price_per_hour",
+                                    "colour",
+                                    "picture_url",
+                                    "type"
+                                ],
+                                "properties": {
+                                    "brand": {
+                                        "type": "string",
+                                        "example": "Toyota"
+                                    },
+                                    "man_date": {
+                                        "type": "integer",
+                                        "example": 2020
+                                    },
+                                    "price_per_hour": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 15.5
+                                    },
+                                    "colour": {
+                                        "type": "string",
+                                        "example": "Red"
+                                    },
+                                    "picture_url": {
+                                        "type": "string",
+                                        "format": "url",
+                                        "example": "https://example.com/car.jpg"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "SUV"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Car added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Car added successfully"
+                                        },
+                                        "car": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "brand": {
+                                                    "type": "string"
+                                                },
+                                                "man_date": {
+                                                    "type": "integer"
+                                                },
+                                                "price_per_hour": {
+                                                    "type": "number",
+                                                    "format": "float"
+                                                },
+                                                "colour": {
+                                                    "type": "string"
+                                                },
+                                                "picture_url": {
+                                                    "type": "string",
+                                                    "format": "url"
+                                                },
+                                                "type": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/cars/{car}": {
+            "put": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Update a car",
+                "operationId": "5bcb1eeb94cb0dc3f522c1e804d99352",
+                "parameters": [
+                    {
+                        "name": "car",
+                        "in": "path",
+                        "description": "ID of the car to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "brand",
+                                    "man_date",
+                                    "price_per_hour",
+                                    "colour",
+                                    "picture_url",
+                                    "type"
+                                ],
+                                "properties": {
+                                    "brand": {
+                                        "type": "string",
+                                        "example": "Toyota"
+                                    },
+                                    "man_date": {
+                                        "type": "integer",
+                                        "example": 2022
+                                    },
+                                    "price_per_hour": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 15.5
+                                    },
+                                    "colour": {
+                                        "type": "string",
+                                        "example": "Red"
+                                    },
+                                    "picture_url": {
+                                        "type": "string",
+                                        "format": "url",
+                                        "example": "https://example.com/car.jpg"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "example": "SUV"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Car updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "brand": {
+                                            "type": "string",
+                                            "example": "Toyota"
+                                        },
+                                        "man_date": {
+                                            "type": "integer",
+                                            "example": 2022
+                                        },
+                                        "price_per_hour": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 15.5
+                                        },
+                                        "colour": {
+                                            "type": "string",
+                                            "example": "Red"
+                                        },
+                                        "picture_url": {
+                                            "type": "string",
+                                            "format": "url",
+                                            "example": "https://example.com/car.jpg"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "example": "SUV"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Car not found"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/cars/{carId}": {
+            "delete": {
+                "tags": [
+                    "Cars"
+                ],
+                "summary": "Delete a car",
+                "operationId": "2956b71baf138ce52d3ab5987de2a360",
+                "parameters": [
+                    {
+                        "name": "carId",
+                        "in": "path",
+                        "description": "ID of the car",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Car deleted successfully"
+                    },
+                    "404": {
+                        "description": "Car not found"
+                    }
+                }
+            }
+        },
+        "/api/flights": {
+            "get": {
+                "tags": [
+                    "Flights"
+                ],
+                "summary": "Get flights list",
+                "operationId": "e3254e9713d5911bf68bdf8a2c5bb33f",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "default": {
+                        "description": "An unexpected error occurred"
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Flights"
+                ],
+                "summary": "Add a new flight",
+                "operationId": "475f504e7776501c447132d89546ff27",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "departure",
+                                    "dest",
+                                    "price",
+                                    "seats_left",
+                                    "description",
+                                    "departure_date",
+                                    "airline_name"
+                                ],
+                                "properties": {
+                                    "departure": {
+                                        "type": "string",
+                                        "example": "New York"
+                                    },
+                                    "dest": {
+                                        "type": "string",
+                                        "example": "Los Angeles"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 299.99
+                                    },
+                                    "seats_left": {
+                                        "type": "integer",
+                                        "example": 50
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Direct flight from New York to Los Angeles."
+                                    },
+                                    "departure_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-12-01"
+                                    },
+                                    "airline_name": {
+                                        "type": "string",
+                                        "example": "Skyline Airlines"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Flight added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "departure": {
+                                            "type": "string"
+                                        },
+                                        "dest": {
+                                            "type": "string"
+                                        },
+                                        "price": {
+                                            "type": "number",
+                                            "format": "float"
+                                        },
+                                        "seats_left": {
+                                            "type": "integer"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        },
+                                        "departure_date": {
+                                            "type": "string",
+                                            "format": "date"
+                                        },
+                                        "airline_name": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/flights/{flight}": {
+            "put": {
+                "tags": [
+                    "Flights"
+                ],
+                "summary": "Update a flight",
+                "operationId": "31b5ee46a123ce6c0b33574c54c14334",
+                "parameters": [
+                    {
+                        "name": "flight",
+                        "in": "path",
+                        "description": "ID of the flight to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "departure",
+                                    "dest",
+                                    "price",
+                                    "seats_left",
+                                    "description",
+                                    "departure_date",
+                                    "airline_name"
+                                ],
+                                "properties": {
+                                    "departure": {
+                                        "type": "string",
+                                        "example": "New York"
+                                    },
+                                    "dest": {
+                                        "type": "string",
+                                        "example": "Los Angeles"
+                                    },
+                                    "price": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 350.75
+                                    },
+                                    "seats_left": {
+                                        "type": "integer",
+                                        "example": 120
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Direct flight from NYC to LA."
+                                    },
+                                    "departure_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-12-01"
+                                    },
+                                    "airline_name": {
+                                        "type": "string",
+                                        "example": "Delta Airlines"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Flight updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "departure": {
+                                            "type": "string",
+                                            "example": "New York"
+                                        },
+                                        "dest": {
+                                            "type": "string",
+                                            "example": "Los Angeles"
+                                        },
+                                        "price": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 350.75
+                                        },
+                                        "seats_left": {
+                                            "type": "integer",
+                                            "example": 120
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "Direct flight from NYC to LA."
+                                        },
+                                        "departure_date": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "2024-12-01"
+                                        },
+                                        "airline_name": {
+                                            "type": "string",
+                                            "example": "Delta Airlines"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Flight not found"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/flights/{flightId}": {
+            "delete": {
+                "tags": [
+                    "Flights"
+                ],
+                "summary": "Delete a flight",
+                "operationId": "bd7a38a60d51cacad4b65036dcb372e8",
+                "parameters": [
+                    {
+                        "name": "flightId",
+                        "in": "path",
+                        "description": "ID of the flight",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Flight deleted successfully"
+                    },
+                    "404": {
+                        "description": "Flight not found"
+                    }
+                }
+            }
+        },
+        "/api/flight-bookings": {
+            "get": {
+                "tags": [
+                    "Flight Bookings"
+                ],
+                "summary": "Get flight bookings list",
+                "operationId": "1d1f34e02890a1e84b00c15d93ef499f",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "default": {
+                        "description": "An unexpected error occurred"
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/api/hotels": {
+            "get": {
+                "tags": [
+                    "Hotels"
+                ],
+                "summary": "Get hotels list",
+                "operationId": "a3e53205023023653cf7dff58b34f6aa",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "default": {
+                        "description": "An unexpected error occurred"
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Hotels"
+                ],
+                "summary": "Add a new hotel",
+                "operationId": "ab85c56e5a5be4ce419cb90e6fe2a1cd",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description",
+                                    "rating",
+                                    "address",
+                                    "thumbnail_url",
+                                    "number_of_rooms_available",
+                                    "price_per_night"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Grand Plaza"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Luxury hotel in the heart of the city."
+                                    },
+                                    "rating": {
+                                        "type": "integer",
+                                        "example": 5
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "123 Main St, Anytown, USA"
+                                    },
+                                    "thumbnail_url": {
+                                        "type": "string",
+                                        "format": "url",
+                                        "example": "http://example.com/thumbnail.jpg"
+                                    },
+                                    "number_of_rooms_available": {
+                                        "type": "integer",
+                                        "example": 20
+                                    },
+                                    "price_per_night": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 199.99
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Hotel added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        },
+                                        "rating": {
+                                            "type": "integer"
+                                        },
+                                        "address": {
+                                            "type": "string"
+                                        },
+                                        "thumbnail_url": {
+                                            "type": "string"
+                                        },
+                                        "number_of_rooms_available": {
+                                            "type": "integer"
+                                        },
+                                        "price_per_night": {
+                                            "type": "number",
+                                            "format": "float"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/hotels/{hotel}": {
+            "put": {
+                "tags": [
+                    "Hotels"
+                ],
+                "summary": "Update a hotel",
+                "operationId": "47f7cf603443de6b0dcf06f00fcd4811",
+                "parameters": [
+                    {
+                        "name": "hotel",
+                        "in": "path",
+                        "description": "ID of the hotel to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "description",
+                                    "rating",
+                                    "address",
+                                    "thumbnail_url",
+                                    "number_of_rooms_available",
+                                    "price_per_night"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Luxury Hotel"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "A five-star hotel with excellent amenities."
+                                    },
+                                    "rating": {
+                                        "type": "integer",
+                                        "example": 5
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "123 Main St, City, Country"
+                                    },
+                                    "thumbnail_url": {
+                                        "type": "string",
+                                        "format": "url",
+                                        "example": "http://example.com/image.jpg"
+                                    },
+                                    "number_of_rooms_available": {
+                                        "type": "integer",
+                                        "example": 20
+                                    },
+                                    "price_per_night": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 150
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Hotel updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Luxury Hotel"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "example": "A five-star hotel with excellent amenities."
+                                        },
+                                        "rating": {
+                                            "type": "integer",
+                                            "example": 5
+                                        },
+                                        "address": {
+                                            "type": "string",
+                                            "example": "123 Main St, City, Country"
+                                        },
+                                        "thumbnail_url": {
+                                            "type": "string",
+                                            "format": "url",
+                                            "example": "http://example.com/image.jpg"
+                                        },
+                                        "number_of_rooms_available": {
+                                            "type": "integer",
+                                            "example": 20
+                                        },
+                                        "price_per_night": {
+                                            "type": "number",
+                                            "format": "float",
+                                            "example": 150
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Hotel not found"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/api/hotels/{hotelId}": {
+            "delete": {
+                "tags": [
+                    "Hotels"
+                ],
+                "summary": "Delete a hotel",
+                "operationId": "9be3f2f5411949855efeb291e356796f",
+                "parameters": [
+                    {
+                        "name": "hotelId",
+                        "in": "path",
+                        "description": "ID of the hotel",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Hotel deleted successfully"
+                    },
+                    "404": {
+                        "description": "Hotel not found"
+                    }
+                }
+            }
+        },
+        "/api/hotel-bookings": {
+            "get": {
+                "tags": [
+                    "Hotel Bookings"
+                ],
+                "summary": "Get hotel bookings list",
+                "operationId": "598f4395a5f1afd9df17880ef0e70463",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "default": {
+                        "description": "An unexpected error occurred"
+                    }
+                },
+                "security": [
+                    {
+                        "passport": []
+                    }
+                ]
+            }
+        },
         "/cars/{carId}/reviews": {
             "get": {
                 "tags": [
@@ -1031,6 +1916,30 @@
         }
     },
     "tags": [
+        {
+            "name": "Car Bookings",
+            "description": "Car Bookings"
+        },
+        {
+            "name": "Cars",
+            "description": "Cars"
+        },
+        {
+            "name": "Flights",
+            "description": "Flights"
+        },
+        {
+            "name": "Flight Bookings",
+            "description": "Flight Bookings"
+        },
+        {
+            "name": "Hotels",
+            "description": "Hotels"
+        },
+        {
+            "name": "Hotel Bookings",
+            "description": "Hotel Bookings"
+        },
         {
             "name": "Reviews",
             "description": "Reviews"
