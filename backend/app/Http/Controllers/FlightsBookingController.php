@@ -124,4 +124,38 @@ class FlightsBookingController extends Controller
             return response()->json(['error' => 'Failed to update review', 'details' => $e->getMessage()], 500);
         }
     }
+    public function deleteBookingFlight($bookingId)
+    {
+        try {
+            $deleted = DB::table('flights_bookings')
+                ->where('id', $bookingId)
+                ->delete();
+
+            if ($deleted) {
+                return response()->json(['response' => 'Booking Deleted Successfully'], 200);
+            } else {
+                return response()->json(['error' => 'Booking Not Found'], 404);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete booking', 'details' => $e->getMessage()], 500);
+        }
+    }
+
+    public function deleteReviewFlight($reviewId)
+    {
+        try {
+            $deleted = DB::table('reviews')
+                ->where('id', $reviewId)
+                ->delete();
+
+            if ($deleted) {
+                return response()->json(['response' => 'Review Deleted Successfully'], 200);
+            } else {
+                return response()->json(['error' => 'Review Not Found'], 404);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete review', 'details' => $e->getMessage()], 500);
+        }
+    }
+
 }
