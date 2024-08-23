@@ -192,16 +192,91 @@ class FlightController extends Controller
         return response()->json(['message' => 'Flight deleted successfully.'], 200);
     }
 
-    public function searchAll () {
+    /**
+     * @OA\Get(
+     *     path="/api/search/all",
+     *     tags={"Flights"},
+     *     summary="Get all flights",
+     *     security={
+     *         {"passport": {}},
+     *     },
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="id", type="integer"),
+     *                 @OA\Property(property="departure", type="string"),
+     *                 @OA\Property(property="dest", type="string"),
+     *                 @OA\Property(property="departure_date", type="string", format="date"),
+     *                 // Add other properties as needed
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="An unexpected error occurred"
+     *     )
+     * )
+     */
+    public function searchAll() {
         $flights = Flight::all();
-        return $flights;
+        return response()->json($flights);
     }
 
-    public function searchSpecific(Request $request)
-    {
-        $from = $request->query('departure'); // Correctly named 'departure'
-        $to = $request->query('dest'); // Correctly named 'dest'
-        $departure_date = $request->query('departure_date'); // Correctly named 'departure_date'
+    /**
+     * @OA\Get(
+     *     path="/api/search/specific",
+     *     tags={"Flights"},
+     *     summary="Search for specific flights",
+     *     @OA\Parameter(
+     *         name="departure",
+     *         in="query",
+     *         required=false,
+     *         @OA\Schema(type="string"),
+     *         description="Departure location"
+     *     ),
+     *     @OA\Parameter(
+     *         name="dest",
+     *         in="query",
+     *         required=false,
+     *         @OA\Schema(type="string"),
+     *         description="Destination location"
+     *     ),
+     *     @OA\Parameter(
+     *         name="departure_date",
+     *         in="query",
+     *         required=false,
+     *         @OA\Schema(type="string", format="date"),
+     *         description="Departure date"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="id", type="integer"),
+     *                 @OA\Property(property="departure", type="string"),
+     *                 @OA\Property(property="dest", type="string"),
+     *                 @OA\Property(property="departure_date", type="string", format="date"),
+     *                 // Add other properties as needed
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="An unexpected error occurred"
+     *     )
+     * )
+     */
+    public function searchSpecific(Request $request) {
+        $from = $request->query('departure');
+        $to = $request->query('dest');
+        $departure_date = $request->query('departure_date');
 
         $query = Flight::query();
 
@@ -223,15 +298,46 @@ class FlightController extends Controller
 
 
 
-    public function flightReview($flightId)
-    {
+    /**
+     * @OA\Get(
+     *     path="/api/search/review/{flight_id}",
+     *     tags={"Flights"},
+     *     summary="Get reviews for a specific flight",
+     *     @OA\Parameter(
+     *         name="flight_id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="ID of the flight"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(
+     *                 type="object",
+     *                 @OA\Property(property="comment", type="string"),
+     *                 @OA\Property(property="rating", type="integer"),
+     *                 @OA\Property(property="updated_at", type="string", format="date-time")
+     *             )
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="An unexpected error occurred"
+     *     )
+     * )
+     */
+    public function flightReview($flightId) {
         $flightReview = DB::table('flights')
-            ->join('reviews', 'reviews.reviewable_id', '=', 'flights.id') // Corrected the join condition
+            ->join('reviews', 'reviews.reviewable_id', '=', 'flights.id')
             ->where('reviews.reviewable_type', 'App\Models\Flight')
-            ->where('reviews.reviewable_id', $flightId) // Add this to filter reviews by flight ID
+            ->where('reviews.reviewable_id', $flightId)
             ->select('reviews.comment', 'reviews.rating', 'reviews.updated_at')
             ->get();
 
-        return $flightReview; // Ensure the results are returned
+        return response()->json($flightReview);
     }
+
 }
