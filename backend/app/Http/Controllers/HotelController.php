@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
 use App\Models\HotelsBooking;
+use Illuminate\Support\Facades\DB;
+
 class HotelController extends Controller
 {
 
@@ -185,6 +187,23 @@ class HotelController extends Controller
     {
         $hotel->delete();
         return response()->json(['message' => 'Hotel deleted successfully.'], 200);
+    }
+
+    public function specificHotel($name , $location, $rating) {
+        $hotel = DB::table('hotels')->where('name', $name)
+            ->where('address', $location)
+            ->where('rating', $rating)
+            ->get();
+        return response()->json($hotel);
+    }
+
+    public function getReviews($hotel_id) {
+        $reviews = DB::table('reviews')
+            ->where('reviewable_type', 'App\Models\Hotel')
+            ->where('reviewable_id', $hotel_id)
+            ->get();
+
+        return response()->json($reviews);
     }
 
 }
