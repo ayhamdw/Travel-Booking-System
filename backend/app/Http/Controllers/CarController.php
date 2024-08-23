@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\CarBooking;
+use Illuminate\Support\Facades\DB;
+
 class CarController extends Controller
 {
     /**
@@ -27,11 +29,10 @@ class CarController extends Controller
      */
     public function listCars(Request $request): \Illuminate\Http\JsonResponse
     {
-        $cars = Car::all(); // all hotels from the database
+        $cars = Car::all(); // all cars from the database
         return response()->json($cars);
     }
 
-    // Store a new car
     /**
      * @OA\Post(
      *     path="/api/cars",
@@ -73,7 +74,6 @@ class CarController extends Controller
      */
     public function addCar(Request $request)
     {
-        // Validate the incoming request data
         $validated = $request->validate([
             'brand' => 'required|string',
             'man_date' => 'required|integer|digits:4',
@@ -83,10 +83,8 @@ class CarController extends Controller
             'type' => 'required|string',
         ]);
 
-        // Create a new car record
         $car = Car::create($validated);
 
-        // Return a JSON response
         return response()->json(['message' => 'Car added successfully', 'car' => $car], 201);
     }
 
@@ -105,7 +103,6 @@ class CarController extends Controller
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *             required={"brand", "man_date", "price_per_hour", "colour", "picture_url", "type"},
      *             @OA\Property(property="brand", type="string", example="Toyota"),
      *             @OA\Property(property="man_date", type="integer", example=2022),
      *             @OA\Property(property="price_per_hour", type="number", format="float", example=15.50),
@@ -139,7 +136,6 @@ class CarController extends Controller
      */
     public function updateCar(Request $request, Car $car)
     {
-        // Validate the incoming request data
         $validated = $request->validate([
             'brand' => 'nullable|string',
             'man_date' => 'nullable|integer|digits:4',
@@ -149,20 +145,18 @@ class CarController extends Controller
             'type' => 'nullable|string',
         ]);
 
-        // Update the car with the validated data
-        $car->update(array_filter($validated)); // array_filter removes null values
+        $car->update(array_filter($validated));
 
-        // Return a JSON response with the updated car
         return response()->json($car);
     }
 
     /**
      * @OA\Delete(
-     *     path="/api/cars/{carId}",
+     *     path="/api/cars/{car}",
      *     summary="Delete a car",
      *     tags={"Cars"},
      *     @OA\Parameter(
-     *         name="carId",
+     *         name="car",
      *         in="path",
      *         required=true,
      *         @OA\Schema(type="integer"),
@@ -180,11 +174,126 @@ class CarController extends Controller
      */
     public function deleteCar(Car $car)
     {
-        // Delete the car
         $car->delete();
 
-        // Return a JSON response confirming deletion
         return response()->json(['message' => 'Car deleted successfully.'], 200);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/search/specific",
+     *     tags={"Cars"},
+     *     summary="Search for specific cars",
+     *     @OA\Parameter(
+     *         name="brand",
+     *         in="query",
+     *         required=false,
+     *         @OA\Schema(type="string"),
+     *         description="Car brand"
+     *     ),
+     *     @OA\Parameter(
+     *         name="man_date",
+     *         in="query",
+     *         required=false,
+     *         @OA\Schema(type="integer"),
+     *         description="Manufacture date"
+     *     ),
+     *     @OA\Parameter(
+     *         name="type",
+     *         in="query",
+     *         required=false,
+     *         @OA\Schema(type="string"),
+     *         description="Car type"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="List of cars matching the search criteria"
+     *     )
+     * )
+     */
+    public function specificCar(Request $request)
+    {
+        $brand = $request->query('brand');
+        $man_date = $request->query('man_date');
+        $type = $request->query('type');
+
+        $query = Car::query();
+
+        if ($brand) {
+            $query->where('brand', $brand);
+        }
+
+        if ($man_date) {
+            $query->where('man_date', $man_date);
+        }
+
+        if ($type) {
+            $query->where('type', $type);
+        }
+
+        $cars = $query->get();
+        return response()->json($cars);
+    }
+
+    /**
+     * @OA\Get(
+     *     path="/search/booking",
+     *     tags={"Bookings"},
+     *     summary="Get car bookings",
+     *     @OA\Parameter(
+     *         name="user_id",
+     *         in="query",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="User ID"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="List of car bookings for the specified user"
+     *     )
+     * )
+     */
+    public function getCarBookings(Request $request)
+    {
+        $validated = $request->validate([
+            'user_id' => 'required|integer',
+        ]);
+
+        $carBookings = DB::table('car_bookings')
+            ->join('cars', 'cars.id', '=', 'car_bookings.car_id')
+            ->join('users', 'users.id', '=', 'car_bookings.user_id')
+            ->where('car_bookings.user_id', $validated['user_id'])
+            ->select('cars.*')
+            ->get();
+
+        return response()->json($carBookings);
+    }
+
+    /**
+     * @OA\Get(
+     *     path="/search/review/{car_id}",
+     *     tags={"Reviews"},
+     *     summary="Get reviews for a specific car",
+     *     @OA\Parameter(
+     *         name="car_id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="integer"),
+     *         description="Car ID"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="List of reviews for the specified car"
+     *     )
+     * )
+     */
+    public function getCarReviews($car_id)
+    {
+        $reviews = DB::table('reviews')
+            ->where('reviewable_type', 'App\Models\Car')
+            ->where('reviewable_id', $car_id)
+            ->get();
+
+        return response()->json($reviews);
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReviewController;
@@ -57,7 +58,7 @@ Route::post('/users/register', [UserController::class, 'store']);
 // Flight APIs
 Route::prefix('flights')->group(function () {
     Route::get('/search/all' , '\App\Http\Controllers\FlightController@searchAll');
-    Route::get('/search/{from}/{to}/{departure}' , '\App\Http\Controllers\FlightController@search');
+    Route::get('/search/specific' , '\App\Http\Controllers\FlightController@searchSpecific');
     Route::get('/search/booking/{user_id}' , '\App\Http\Controllers\FlightsBookingController@searchBookingFlights');
     Route::get('/search/review/{flight_id}' , '\App\Http\Controllers\FlightController@flightReview');
 
@@ -90,10 +91,19 @@ Route::prefix('hotels')->group(function () {
 
 //Car APIs
 Route::prefix('cars')->group(function () {
-    Route::get('/search/all' , '\App\Http\Controllers\CarController@searchAll');
-    Route::get('/search/{brand}/{man_date}/{type}' , '\App\Http\Controllers\CarController@search');
-    Route::get('/search/booking/' , '\App\Http\Controllers\CarController@searchBooking');
-    Route::get('/search/review/' , '\App\Http\Controllers\CarController@searchReview');
+
+// List all cars
+    Route::get('/search/all', [CarController::class, 'listCars']);
+
+// Search for specific cars based on query parameters
+    Route::get('/search/specific', [CarController::class, 'specificCar']);
+
+// Get bookings for a specific user or filter bookings by car
+    Route::get('/search/booking', [CarController::class, 'getCarBookings']);
+
+// Get reviews for a specific car
+    Route::get('/search/review/{car_id}', [CarController::class, 'getCarReviews']);
+
 
     Route::post('/book/' , '\App\Http\Controllers\CarController@addBookingCar');
     Route::post('/review/' , '\App\Http\Controllers\CarController@addReviewCar');
