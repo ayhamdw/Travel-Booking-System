@@ -146,7 +146,7 @@ p {
   text-align: center;
   height: 100vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(../images/all.png);
+    url(/assets/images/all.png);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -253,6 +253,8 @@ section .section-heading {
   align-items: center;
   margin-bottom: 6rem;
   /* color: white; */
+  z-index: 1;
+
 }
 
 .circles {
@@ -272,7 +274,7 @@ section .section-heading {
   position: absolute;
   top: -3rem;
   border-radius: 1rem;
-  z-index: -1;
+  z-index: 0;
   opacity: 30%;
 }
 
@@ -290,7 +292,7 @@ section .section-heading {
   padding: 12rem 0;
   /* background-image: url(/img/quran.jpg); */
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url(../images/plane.png);
+    url(/assets/images/plane.png);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
