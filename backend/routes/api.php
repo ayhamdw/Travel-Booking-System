@@ -73,10 +73,10 @@ Route::prefix('flights')->group(function () {
 
 // Hotel APIs
 Route::prefix('hotels')->group(function () {
-    Route::get('/search/all' , '\App\Http\Controllers\HotelController@searchAll');
-    Route::get('/search/{name}/{location}/{rating}' , '\App\Http\Controllers\HotelController@search');
-    Route::get('/search/booking/' , '\App\Http\Controllers\HotelController@searchBooking');
-    Route::get('/search/review/' , '\App\Http\Controllers\HotelController@searchReview');
+    Route::get('/search/all' , '\App\Http\Controllers\HotelController@listHotels');
+    Route::get('/search/{name}/{location}/{rating}' , '\App\Http\Controllers\HotelController@specificHotel');
+    Route::get('/search/booking/' , '\App\Http\Controllers\HotelsBookingController@getHotelBookings');
+    Route::get('/search/review/{hotel_Id}' , '\App\Http\Controllers\HotelController@getReviews');
 
     Route::post('/book/' , '\App\Http\Controllers\HotelController@addBookingHotel');
     Route::post('/review/' , '\App\Http\Controllers\HotelController@addReviewHotel');
