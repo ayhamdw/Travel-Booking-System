@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Flight;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class FlightController extends Controller
@@ -196,14 +197,31 @@ class FlightController extends Controller
         return $flights;
     }
 
-    public function search ($from, $to, $departure) {
-        $flights = DB::table("flights")
-            ->where('departure' , $from)
-            ->where('dest' , $to)
-            ->where('departure_date' , $departure)
-            ->get();
-        return $flights;
+    public function searchSpecific(Request $request)
+    {
+        $from = $request->query('departure'); // Correctly named 'departure'
+        $to = $request->query('dest'); // Correctly named 'dest'
+        $departure_date = $request->query('departure_date'); // Correctly named 'departure_date'
+
+        $query = Flight::query();
+
+        if ($from !== null) {
+            $query->where('departure', $from);
+        }
+
+        if ($to !== null) {
+            $query->where('dest', $to);
+        }
+
+        if ($departure_date !== null) {
+            $query->where('departure_date', $departure_date);
+        }
+
+        $flights = $query->get();
+        return response()->json($flights);
     }
+
+
 
     public function flightReview($flightId)
     {
