@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-top-nav',
+  selector: 'app-page-content',
   standalone: true,
   imports: [],
-  templateUrl: './top-nav.component.html',
+  templateUrl: './page-content.component.html',
   styleUrl: '../../assets/css/style.css'
 })
-export class TopNavComponent {
+export class PageContentComponent {
 
 }

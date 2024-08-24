@@ -1,26 +1,18 @@
 import {Component, OnInit, Renderer2} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-<<<<<<< HEAD
 import {TopNavComponent} from "./top-nav/top-nav.component";
-=======
+import {MainPageComponent} from "./main-page/main-page.component";
 declare var AOS: any;
->>>>>>> origin/main
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-<<<<<<< HEAD
-  imports: [RouterOutlet, TopNavComponent],
+  imports: [RouterOutlet, TopNavComponent, MainPageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'Ayham';
-=======
-    imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
-})
+
 export class AppComponent implements OnInit {
   constructor(private renderer: Renderer2) {
   }
@@ -46,5 +38,4 @@ export class AppComponent implements OnInit {
       });
     }
   }
->>>>>>> origin/main
 }
