@@ -1,8 +1,12 @@
+<head>
+
+  <script src="./assets/JS/main.js"></script>
+</head>
 <nav class="navbar navbar-expand-lg bg-body-tertiary py-4">
   <div class="container">
     <a data-aos="fade-right" class="navbar-brand">TripTrove</a>
 
-    <a href="" class="navbar-brand button ms-3">Login</a>
+    <a routerLink = 'login-page' class="navbar-brand button ms-3">Login</a>
 
     <button
       data-aos="fade-left"
@@ -19,13 +23,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul data-aos="fade-left" class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="#prog">Rental Cars</a>
+          <a class="nav-link" aria-current="page" routerLink="cars">Rental Cars</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#whous">Flight</a>
+          <a class="nav-link" routerLink="flights">Flight</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#contactus">Hotels</a>
+          <a class="nav-link" routerLink="hotels">Hotels</a>
         </li>
       </ul>
     </div>
@@ -35,6 +39,7 @@
   <div class="container" data-aos="zoom-in">
     <h1>Your Journey Begins Here</h1>
     <p>Explore the best travel deals on flights, hotels, and car rentals</p>
-    <a href="sign_up.php"> <button class="btn">Click Here to Register</button></a>
+    <a routerLink="signup"> <button class="btn">Click Here to Register</button></a>
   </div>
 </section>
+
