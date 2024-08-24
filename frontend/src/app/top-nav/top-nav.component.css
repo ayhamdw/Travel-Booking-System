@@ -1,0 +1,52 @@
+.navbar {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #f8f9fa !important;
+  text-transform: uppercase;
+}
+
+.nav-link {
+  font-size: 1.1rem;
+  margin-right: 1rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #00bfff !important;
+}
+
+.dropdown-menu {
+  background-color: #343a40;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+  color: #f8f9fa !important;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.dropdown-item:hover {
+  background-color: #00bfff;
+  color: #ffffff !important;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+}
+
+.social-icons .nav-link {
+  color: #f8f9fa;
+  font-size: 1.2rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.social-icons .nav-link:hover {
+  color: #00bfff;
+}
