@@ -1,7 +1,6 @@
-import {Component, OnInit, Renderer2} from '@angular/core';
-import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import { Component, OnInit, AfterViewInit, Renderer2, ElementRef, ViewChild } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 declare var AOS: any;
-
 
 @Component({
   selector: 'app-top-nav',
@@ -12,31 +11,33 @@ declare var AOS: any;
     RouterLinkActive
   ],
   templateUrl: './top-nav.component.html',
-  styleUrl: '../../assets/css/style.css'
+  styleUrls: ['../../assets/css/style.css'] // Corrected to 'styleUrls' instead of 'styleUrl'
 })
-export class TopNavComponent {
-  constructor(private renderer: Renderer2) {
-  }
+export class TopNavComponent implements OnInit, AfterViewInit {
+  @ViewChild('upButton', { static: false }) upButton!: ElementRef; // Use '!' to indicate it's definitely assigned
+
+  constructor(private renderer: Renderer2) {}
+
   ngOnInit() {
-    // === AOS === //
-    AOS.init();
-
-    // === Up button === //
-    this.renderer.listen('window', 'scroll', () => {
-      const span = document.querySelector(".up");
-      if (window.scrollY >= 851.2) {
-        this.renderer.addClass(span, 'show');
-      } else {
-        this.renderer.removeClass(span, 'show');
-      }
-    });
-
-    const span = document.querySelector(".up");
-    if (span) {
-      this.renderer.listen(span, 'click', () => {
-        window.scrollTo(0, 0);
-      });
-    }
+    // Initialize AOS
+    // AOS.init();
   }
 
+  ngAfterViewInit() {
+    // if (this.upButton) {
+    //   // === Up button scroll event === //
+    //   this.renderer.listen('window', 'scroll', () => {
+    //     if (window.scrollY >= 851.2) {
+    //       this.renderer.addClass(this.upButton.nativeElement, 'show');
+    //     } else {
+    //       this.renderer.removeClass(this.upButton.nativeElement, 'show');
+    //     }
+    //   });
+    //
+    //   // === Up button click event === //
+    //   this.renderer.listen(this.upButton.nativeElement, 'click', () => {
+    //     window.scrollTo(0, 0);
+    //   });
+    // }
+  }
 }

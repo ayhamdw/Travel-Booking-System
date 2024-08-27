@@ -93,9 +93,7 @@
 
 
             ],
-            "scripts": [  "node_modules/aos/dist/aos.js",
-              "src/assets/JS/main.js"
-
+            "scripts": [  "node_modules/aos/dist/aos.js"
             ]
           }
         }
