@@ -1,1 +1,97 @@
-<p>hotels-page works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Booking Form HTML Template</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+</head>
+
+<body>
+<div id="booking" class="section">
+  <div class="section-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="booking-cta">
+            <h1>Make your reservation</h1>
+            <p>Find your perfect stay." Explore our wide selection of hotels for every budget and style. Book with us to enjoy comfort, convenience, and the best rates for your next trip</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-md-offset-1">
+          <div class="booking-form">
+            <form>
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <input class="form-control" type="email">
+                    <span class="form-label">Location</span>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <input class="form-control" type="text">
+                    <span class="form-label">Rating</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <span class="form-label">Rooms</span>
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+                    <span class="select-arrow"></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input class="form-control" type="date" required>
+                    <span class="form-label">Check In</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+
+              </div>
+              <div class="form-btn">
+                <button class="submit-btn">Book Now</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script>
+  $('.form-control').each(function () {
+    floatedLabel($(this));
+  });
+
+  $('.form-control').on('input', function () {
+    floatedLabel($(this));
+  });
+
+  function floatedLabel(input) {
+    var $field = input.closest('.form-group');
+    if (input.val()) {
+      $field.addClass('input-not-empty');
+    } else {
+      $field.removeClass('input-not-empty');
+    }
+  }
+</script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
