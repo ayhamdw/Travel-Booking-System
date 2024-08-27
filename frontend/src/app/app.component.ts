@@ -10,32 +10,9 @@ declare var AOS: any;
   standalone: true,
   imports: [RouterOutlet, TopNavComponent, MainPageComponent, RouterLink],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: '../assets/css/style.css'
 })
 
-export class AppComponent implements OnInit {
-  constructor(private renderer: Renderer2) {
-  }
+export class AppComponent {
 
-  ngOnInit() {
-    // === AOS === //
-    AOS.init();
-
-    // === Up button === //
-    this.renderer.listen('window', 'scroll', () => {
-      const span = document.querySelector(".up");
-      if (window.scrollY >= 851.2) {
-        this.renderer.addClass(span, 'show');
-      } else {
-        this.renderer.removeClass(span, 'show');
-      }
-    });
-
-    const span = document.querySelector(".up");
-    if (span) {
-      this.renderer.listen(span, 'click', () => {
-        window.scrollTo(0, 0);
-      });
-    }
-  }
 }
