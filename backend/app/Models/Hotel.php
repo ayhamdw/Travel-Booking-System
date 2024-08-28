@@ -13,7 +13,9 @@ class Hotel extends Model
         'location',
         'price_per_night',
         'description',
-        'rating'
+        'rating',
+        'number_of_rooms_available',
+        'thumbnail_url'
     ];
 
     public function hotelsBookings()
