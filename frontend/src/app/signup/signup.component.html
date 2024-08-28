@@ -1,0 +1,62 @@
+<div class="container">
+  <h2>Create an account</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="input-box">
+      <input type="text" formControlName="username" placeholder="Username" required>
+      <div *ngIf="((signupForm.get('username')?.invalid && (signupForm.get('username')?.touched) || isSubmitted))">
+        <small *ngIf="signupForm.get('username')?.errors?.['required']">Username is required</small>
+        <small *ngIf="serverErrors.username && serverErrors.username.length > 0">{{ serverErrors.username[0] }}</small>
+      </div>
+    </div>
+    <div class="input-box">
+      <input type="email" formControlName="email" placeholder="Email" required>
+      <div *ngIf="((signupForm.get('email')?.invalid && (signupForm.get('email')?.touched) || isSubmitted))">
+        <small *ngIf="serverErrors.email && serverErrors.email.length > 0">{{ serverErrors.email[0] }}</small>
+        <small *ngIf="signupForm.get('email')?.errors?.['email']">Invalid email format</small>
+        <small *ngIf="signupForm.get('email')?.errors?.['required']">Email is required</small>
+        
+      </div>
+    </div>
+    <div class="input-box">
+      <input type="text" formControlName="first_name" placeholder="First name" required>
+      <div *ngIf="(signupForm.get('first_name')?.invalid && (signupForm.get('first_name')?.touched || isSubmitted))">
+        <small *ngIf="signupForm.get('first_name')?.errors?.['required']">First name is required</small>
+      </div>
+    </div>
+    <div class="input-box">
+      <input type="text" formControlName="last_name" placeholder="Last name" required>
+      <div *ngIf="(signupForm.get('last_name')?.invalid && (signupForm.get('last_name')?.touched || isSubmitted))">
+        <small *ngIf="signupForm.get('last_name')?.errors?.['required']">Last name is required</small>
+      </div>
+    </div>
+    <div class="input-box">
+      <input type="password" formControlName="password" placeholder="Password" required>
+      <div *ngIf="(signupForm.get('password')?.invalid && (signupForm.get('password')?.touched || isSubmitted))">
+        <small *ngIf="signupForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long</small>
+        <small *ngIf="signupForm.get('password')?.errors?.['required']">Password is required</small>
+      </div>
+    </div>
+    <div class="input-box">
+      <input type="password" formControlName="confirmPassword" placeholder="Confirm password" required>
+      <div *ngIf="(signupForm.errors?.['passwordMismatch'] && (signupForm.get('confirmPassword')?.touched || isSubmitted))">
+        <small>Passwords do not match</small>
+      </div>
+      <!-- <div *ngIf="((signupForm.get('confirmPassword')?.invalid && (signupForm.get('confirmPassword')?.touched) || isSubmitted))"> -->
+        <!-- <small *ngIf="signupForm.get('confirmPassword')?.errors?.['required']">Confirm password is required</small> -->
+      <!-- </div> -->
+    </div>
+    <div class="policy">
+      <input type="checkbox" formControlName="terms">
+      <h3>I accept all terms & conditions</h3>
+      <div *ngIf="(signupForm.get('terms')?.invalid && (signupForm.get('terms')?.touched || isSubmitted))">
+        <small>You must accept the terms and conditions</small>
+      </div>
+    </div>
+    <div class="input-box button">
+      <input type="submit" value="Register Now">
+    </div>
+    <div class="text">
+      <h3>Already have an account? <a href="#">Login now</a></h3>
+    </div>
+  </form>
+</div>
