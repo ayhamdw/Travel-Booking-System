@@ -5,7 +5,7 @@
       <div class="rating">
         <span class="rating-stars">★</span>
         <span class="rating-number">{{ flightData?.averageRating?.toFixed(1) || 'N/A' }}</span>
-<!--        <span class="review-count">({{ flightData?numberOfReviews}} reviews)</span>-->
+        <span class="review-count">({{ flightData?.numberOfReviews}} reviews)</span>
       </div>
     </div>
     <div class="card-image" *ngIf="flightData?.picture_url">
