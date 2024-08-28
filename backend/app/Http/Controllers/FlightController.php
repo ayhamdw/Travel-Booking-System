@@ -73,7 +73,7 @@ class FlightController extends Controller
      *     )
      * )
      */
-    public function addFlight(Request $request)
+    public function addFlight(Request $request): \Illuminate\Http\JsonResponse
     {
         // Validate the incoming request data
         $validated = $request->validate([
@@ -84,6 +84,7 @@ class FlightController extends Controller
             'description' => 'required|string',
             'departure_date' => 'required|date',
             'airline_name' => 'required|string',
+            'picture_url' => 'nullable|url',
         ]);
 
         // Create a new Flight record
