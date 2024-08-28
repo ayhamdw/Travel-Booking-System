@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <nav id="sidebar" class="col-md-2 d-md-block sidebar">
+      <div class="position-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link d-flex justify-content-between align-items-center" (click)="toggleSubmenu()">
+              <span><i class="fas fa-cogs me-2"></i> Services</span>
+              <i class="fas fa-chevron-down" [class.rotate]="isSubmenuOpen"></i>
+            </a>
+            <!-- Submenu for Services -->
+            <ul class="nav flex-column ms-3" *ngIf="isSubmenuOpen">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/admin/services/flights" routerLinkActive="active">
+                  <i class="fas fa-plane me-2"></i> Flights List
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/admin/services/hotels" routerLinkActive="active">
+                  <i class="fas fa-hotel me-2"></i> Hotels List
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/admin/services/cars" routerLinkActive="active">
+                  <i class="fas fa-car me-2"></i> Cars List
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/bookings" routerLinkActive="active">
+              <i class="fas fa-calendar-check me-2"></i> Bookings
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/reviews" routerLinkActive="active">
+              <i class="fas fa-star me-2"></i> Reviews
+            </a>
+          </li>
+
+          <!-- Log Out Button -->
+          <li class="nav-item mt-auto">
+            <button class="btn btn-danger w-100">Log Out</button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-4 ">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
