@@ -54,7 +54,6 @@ Route::get('/reviews/hotel/stats', [ReviewController::class, 'getAllHotelReviewS
 
 Route::post('/users/register', [UserController::class, 'store']);
 
-
 // Flight APIs
 Route::prefix('flights')->group(function () {
     Route::get('/search/all' , '\App\Http\Controllers\FlightController@searchAll');
