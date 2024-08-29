@@ -1,0 +1,156 @@
+.hotels-header {
+  text-align: center;
+  padding: 20px 0;
+
+  color: #fff;
+  border-radius: 8px 8px 0 0;
+}
+
+.hotels-header h1 {
+  margin: 0;
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+
+.hotels-container {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.table th {
+  background-color: lightgray;
+  color: darkslategray;
+  font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #f1f1f1;
+}
+
+
+.edit-input {
+  font-size: 1.2rem !important; /* Force the font size if needed */
+  padding: .2rem .5rem;
+}
+
+.icon-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.icon-container .btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+.icon-container .btn i {
+  color: darkslategray;
+  transition: color 0.3s ease;
+}
+
+.icon-container .btn i:hover {
+  color: darkred;
+}
+.form-group label {
+  font-size: 1.6rem; /* Larger font size for labels */
+  margin-bottom: 0.7rem; /* Space between label and input */
+}
+
+.form-control {
+  font-size: 1.6rem; /* Larger font size for input fields */
+  padding: 0.7rem; /* Add padding inside input fields */
+  border-radius: 0.2rem; /* Rounded corners for input fields */
+}
+
+.btn {
+  font-size: 1.4rem; /* Adjust the font size as needed */
+  background-color: bisque;
+  box-shadow: 0 4px 6px rgba(108, 117, 125, 0.3); /* Gray shadow */
+  color: #4a5568;
+
+}
+
+@media (max-width: 992px) {
+  .hotels-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .edit-input {
+    font-size: 1rem;
+  }
+
+  .icon-container .btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hotels-header {
+    padding: 15px 0;
+  }
+
+  .hotels-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .table th,
+  .table td {
+    padding: 10px;
+  }
+
+  .form-group label,
+  .form-control {
+    font-size: 1.2rem;
+  }
+
+  .icon-container .btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hotels-header {
+    padding: 10px 0;
+  }
+
+  .hotels-header h1 {
+    font-size: 1.4rem;
+  }
+
+  .form-group label,
+  .form-control {
+    font-size: 1rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+}
+

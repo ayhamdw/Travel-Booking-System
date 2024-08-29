@@ -93,16 +93,9 @@ Route::prefix('cars')->group(function () {
 
 // List all cars
     Route::get('/search/all', [CarController::class, 'listCars']);
-
-// Search for specific cars based on query parameters
     Route::get('/search/specific', [CarController::class, 'specificCar']);
-
-// Get bookings for a specific user or filter bookings by car
     Route::get('/search/booking', [CarController::class, 'getCarBookings']);
-
-// Get reviews for a specific car
     Route::get('/search/review/{car_id}', [CarController::class, 'getCarReviews']);
-
 
     Route::post('/book/' , '\App\Http\Controllers\CarController@addBookingCar');
     Route::post('/review/' , '\App\Http\Controllers\CarController@addReviewCar');
