@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>Sign in</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <small *ngIf="serverErrors && serverErrors.length > 0">Wrong email or password</small>
+      <div class="input-box">
+        <input type="email" formControlName="email" placeholder="Email" required>
+        <div *ngIf="(loginForm.get('email')?.invalid && (loginForm.get('email')?.touched || isSubmitted))">
+          <small *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email format</small>
+          <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</small>
+        </div>
+      </div>
+      <div class="input-box">
+        <input type="password" formControlName="password" placeholder="Password" required>
+        <div *ngIf="(loginForm.get('password')?.invalid && (loginForm.get('password')?.touched || isSubmitted))">
+          <small *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long</small>
+          <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</small>
+        </div>
+      </div>
+      
+      <div class="input-box button">
+        <input type="submit" value="Sign in">
+      </div>
+    </form>
+  </div>
+  

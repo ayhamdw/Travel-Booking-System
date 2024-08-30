@@ -3,6 +3,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { SignupService } from './signup.service';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';  // Import Router
 
 @Component({
   standalone: true,
@@ -17,7 +18,12 @@ export class SignupComponent implements OnInit {
   isSubmitted = false;
   serverErrors: any = {};
 
-  constructor(private formBuilder: FormBuilder, private signupService: SignupService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private formBuilder: FormBuilder, 
+    private signupService: SignupService, 
+    private cdr: ChangeDetectorRef,
+    private router: Router  // Inject Router
+  ) {}
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
@@ -61,7 +67,8 @@ export class SignupComponent implements OnInit {
       this.signupService.signup(formData).subscribe(
         response => {
           console.log('Signup successful!', response);
-          // Handle successful response here
+          // Redirect to home page on success
+          this.router.navigate(['/home']);  // Navigate to the home page (root)
         },
         error => {
           if (error.status === 422 && error.error.errors) {
