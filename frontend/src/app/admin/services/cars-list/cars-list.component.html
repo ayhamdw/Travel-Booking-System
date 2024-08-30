@@ -68,7 +68,8 @@
             <input [(ngModel)]="car.picture_url" class="form-control" />
           </td>
           <td *ngIf="editIndex !== i">
-            <a [href]="car.picture_url" target="_blank">{{ car.picture_url }}</a>
+            <a [href]="car.picture_url" target="_blank" *ngIf="car.picture_url">{{ car.picture_url }}</a>
+            <span *ngIf="!car.picture_url">No URL</span>
           </td>
           <td>{{ car.type }}</td>
           <td>

@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
 })
 export class HotelsService {
 
-  private apiUrl = 'http://127.0.0.1:8000/api/hotels';
+  private apiUrl = 'http://localhost:8000/api/hotels';
 
   constructor(private http: HttpClient) { }
 
@@ -17,7 +17,7 @@ export class HotelsService {
 
 
   addHotel(hotel: any): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:8000/api/addhotel', hotel);
+    return this.http.post<any>('http://localhost:8000/api/addhotel', hotel);
   }
 
   updateHotel(id: number, hotel: any): Observable<any> {

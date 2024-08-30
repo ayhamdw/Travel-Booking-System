@@ -6,7 +6,7 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class CarsService {
-  private apiUrl = 'http://127.0.0.1:8000/api/cars';
+  private apiUrl = 'http://localhost:8000/api/cars';
 
   constructor(private http: HttpClient) { }
 
@@ -22,6 +22,6 @@ export class CarsService {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
   addCar(carData: any): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:8000/api/addcar', carData);
+    return this.http.post<any>('http://localhost:8000/api/addcar', carData);
   }
 }

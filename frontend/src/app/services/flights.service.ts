@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FlightsService {
-  private apiUrl = 'http://127.0.0.1:8000/api/flights';
+  private apiUrl = 'http://localhost:8000/api/flights';
 
   constructor(private http: HttpClient) { }
 
@@ -21,6 +21,6 @@ export class FlightsService {
     return this.http.delete<any>(`${this.apiUrl}/${id}`);
   }
   addFlight(flightData: any): Observable<any> {
-    return this.http.post<any>('http://127.0.0.1:8000/api/addflight', flightData);
+    return this.http.post<any>('http://localhost:8000/api/addflight', flightData);
   }
 }
