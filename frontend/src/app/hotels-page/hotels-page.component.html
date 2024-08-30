@@ -72,26 +72,10 @@
   </div>
 </div>
 
-<script src="js/jquery.min.js"></script>
-<script>
-  $('.form-control').each(function () {
-    floatedLabel($(this));
-  });
-
-  $('.form-control').on('input', function () {
-    floatedLabel($(this));
-  });
-
-  function floatedLabel(input) {
-    var $field = input.closest('.form-group');
-    if (input.val()) {
-      $field.addClass('input-not-empty');
-    } else {
-      $field.removeClass('input-not-empty');
-    }
-  }
-</script>
-
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
-
-</html>
+<div class="container">
+  <div class="row">
+    <div *ngFor="let hotelsData of hotels" class="col-md-4 col-sm-6">
+      <app-hotel-blocks [hotelData]="hotelsData"></app-hotel-blocks>
+    </div>
+  </div>
+</div>

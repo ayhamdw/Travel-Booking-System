@@ -17,7 +17,7 @@ import {FlightBlocksComponent} from "../flight-blocks/flight-blocks.component";
   templateUrl: './flights-page.component.html',
   styleUrl: './flights-page.component.css'
 })
-export class FlightsPageComponent implements OnInit{
+export class FlightsPageComponent implements OnInit {
 
   flights:any = [];
   flightService = inject(GetFlightsService);
