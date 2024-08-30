@@ -1,0 +1,15 @@
+<div class="card hotel-card mb-4 shadow-lg">
+  <img [src]="hotelData.thumbnail_url" alt="Hotel Thumbnail" class="card-img-top hotel-image">
+  <div class="card-body">
+    <h5 class="card-title hotel-name">{{ hotelData.name }}</h5>
+    <p class="card-text hotel-description">{{ hotelData.description }}</p>
+    <p class="card-text"><strong>Address:</strong> {{ hotelData.address }}</p>
+    <p class="card-text"><strong>Rating:</strong> {{ hotelData.rating }} / 5</p>
+    <p class="card-text"><strong>Rooms Available:</strong> {{ hotelData.number_of_rooms_available }}</p>
+    <p class="card-text"><strong>Price per Night:</strong> ${{ hotelData.price_per_night }}</p>
+    <div class="d-flex justify-content-between mt-4">
+      <button class="btn custom-btn-book" >Book Now</button>
+      <button class="btn custom-btn-details" >View Details</button>
+    </div>
+  </div>
+</div>
