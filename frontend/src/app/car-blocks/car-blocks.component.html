@@ -1,0 +1,14 @@
+<div class="card car-card mb-4 shadow-lg">
+  <img [src]="carData.picture_url" alt="Car Thumbnail" class="card-img-top car-image">
+  <div class="card-body">
+    <h5 class="card-title car-brand">{{ carData.brand }}</h5>
+    <p class="card-text car-type"><strong>Type:</strong> {{ carData.type }}</p>
+    <p class="card-text car-man-date"><strong>Manufacturing Date:</strong> {{ carData.man_date }}</p>
+    <p class="card-text car-colour"><strong>Color:</strong> {{ carData.colour }}</p>
+    <p class="card-text car-price"><strong>Price per Hour:</strong> ${{ carData.price_per_hour }}</p>
+    <div class="d-flex justify-content-between mt-4">
+      <button class="btn custom-btn-book">Book Now</button>
+      <button class="btn custom-btn-details">View Details</button>
+    </div>
+  </div>
+</div>

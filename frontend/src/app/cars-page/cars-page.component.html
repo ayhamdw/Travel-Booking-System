@@ -27,13 +27,13 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <span class="form-label">Year of manufacture</span>
-                    <input class="form-control" type="text" placeholder="Year">
+                    <input class="form-control" type="text" placeholder="Year" #filter>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
                     <span class="form-label">Brand</span>
-                    <input class="form-control" type="text" placeholder="Brand">
+                    <input class="form-control" type="text" placeholder="Brand" >
                   </div>
                 </div>
               </div>
@@ -46,12 +46,19 @@
                 </div>
               </div>
               <div class="form-btn">
-                <button class="submit-btn">Show Cars</button>
+                <button class="submit-btn" (click)="filterResults(filter.value)" >Show Cars</button>
               </div>
             </form>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm-6" *ngFor="let car of cars">
+      <app-car-blocks [carData]="car"></app-car-blocks>
     </div>
   </div>
 </div>

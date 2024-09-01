@@ -1,39 +1,16 @@
-<div class="card-container">
-  <div class="card">
-    <div class="card-header">
-      <h3 class="card-title">{{ flightData?.airline_name || 'Airline Name' }}</h3>
-      <div class="rating">
-        <span class="rating-stars">★</span>
-        <span class="rating-number">{{ flightData?.averageRating?.toFixed(1) || 'N/A' }}</span>
-        <span class="review-count">({{ flightData?.numberOfReviews }} reviews)</span>
-      </div>
-    </div>
-    <div class="card-image" *ngIf="flightData?.picture_url">
-      <img [src]="flightData?.picture_url" alt="{{ flightData?.airline_name }} flight">
-    </div>
-    <div class="card-body">
-      <p class="flight-info">
-        <strong>From:</strong> {{ flightData?.departure }}
-      </p>
-      <p class="flight-info">
-        <strong>To:</strong> {{ flightData?.dest }}
-      </p>
-      <p class="flight-info">
-        <strong>Departure Date:</strong> {{ flightData?.departure_date | date: 'mediumDate' }}
-      </p>
-      <p class="flight-info">
-        <strong>Price:</strong> ${{ flightData?.price }}
-      </p>
-      <p class="flight-info">
-        <strong>Seats Left:</strong> {{ flightData?.seats_left }}
-      </p>
-      <p class="flight-description">
-        {{ flightData?.description }}
-      </p>
-    </div>
-    <div class="card-footer">
-      <button class="btn btn-book">Book Now!</button>
-      <button class="btn btn-details">View Details</button>
+<div class="card flight-card mb-4 shadow-lg">
+  <img [src]="flightData.picture_url" alt="Flight Thumbnail" class="card-img-top flight-image">
+  <div class="card-body">
+    <h5 class="card-title flight-name">{{ flightData.airline_name }}</h5>
+    <p class="card-text flight-description">{{ flightData.description }}</p>
+    <p class="card-text"><strong>Departure:</strong> {{ flightData.departure }}</p>
+    <p class="card-text"><strong>Destination:</strong> {{ flightData.dest }}</p>
+    <p class="card-text"><strong>Price:</strong> ${{ flightData.price }}</p>
+    <p class="card-text"><strong>Seats Left:</strong> {{ flightData.seats_left }}</p>
+    <p class="card-text"><strong>Departure Date:</strong> {{ flightData.departure_date | date }}</p>
+    <div class="d-flex justify-content-between mt-4">
+      <button class="btn custom-btn-book">Book Now</button>
+      <button class="btn custom-btn-details">View Details</button>
     </div>
   </div>
 </div>

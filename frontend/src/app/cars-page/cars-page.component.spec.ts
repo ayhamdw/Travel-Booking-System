@@ -2,6 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CarsPageComponent } from './cars-page.component';
 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
+
 describe('CarsPageComponent', () => {
   let component: CarsPageComponent;
   let fixture: ComponentFixture<CarsPageComponent>;
@@ -11,7 +14,7 @@ describe('CarsPageComponent', () => {
       imports: [CarsPageComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(CarsPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

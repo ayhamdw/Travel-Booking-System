@@ -1,120 +1,66 @@
-.card-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-}
-
-.card {
-  width: 350px;
+.flight-card {
+  border: none;
   border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   overflow: hidden;
-  background-color: #ffffff;
-  transition: transform 0.3s, box-shadow 0.3s;
-  position: relative;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-}
-
-.card-header {
-  padding: 20px;
-  background-color: #f0f4f7;
-  border-bottom: 1px solid #e0e0e0;
-  text-align: center;
-}
-
-.card-title {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #333;
-}
-
-.rating {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: linear-gradient(135deg, #ffffff 50%, #f3f3f3 50%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin-top: 10px;
 }
 
-.rating-stars {
-  color: #f39c12;
-  font-size: 1.5rem;
-  margin-right: 5px;
+.flight-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.rating-number {
-  font-size: 1.5rem;
-  color: #555;
-}
-
-.review-count {
-  font-size: 1.5rem;
-  color: #777;
-  margin-left: 5px;
-}
-
-.card-image img {
-  width: 100%;
+.flight-image {
   height: 200px;
   object-fit: cover;
+  border-bottom: 5px solid #007bff;
 }
 
-.card-body {
-  padding: 20px;
+
+.card-title.flight-name {
+  font-size: 1.75em;
+  color: #333;
+  margin-bottom: 10px;
 }
 
-.flight-info {
-  margin: 10px 0;
-  font-size: 1.5rem;
-  color: #666;
+.card-text {
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 12px;
 }
 
-.flight-price {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #2c3e50;
-  margin-top: 10px;
-}
 
-.card-footer {
-  padding: 15px;
-  background-color: #f0f4f7;
-  border-top: 1px solid #e0e0e0;
-  display: flex;
-  justify-content: space-between;
-}
-
-.btn {
-  border: none;
+.custom-btn-book,
+.custom-btn-details {
   padding: 10px 20px;
-  font-size: 2rem;
+  border-radius: 50px;
   font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
-.btn-book {
-  background-color: #3498db;
-  color: #ffffff;
-}
-
-.btn-book:hover {
-  background-color: #3498db;
-  transform: scale(1.05);
-}
-
-.btn-details {
-  background-color: #2b4928;
+.custom-btn-book {
+  background-color: #007bff;
   color: white;
+  border: 2px solid #007bff;
 }
 
-.btn-details:hover {
-  background-color: #2b4928;
-  transform: scale(1.05);
+.custom-btn-book:hover {
+  background-color: white;
+  color: #007bff;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.custom-btn-details {
+  background-color: transparent;
+  color: #007bff;
+  border: 2px solid #007bff;
+}
+
+.custom-btn-details:hover {
+  background-color: #007bff;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
