@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CarsService } from '../services/cars.service';
 import { CarBlocksComponent } from '../car-blocks/car-blocks.component';
 import { FormsModule } from '@angular/forms';
-import { NgForOf } from "@angular/common";
+import { NgForOf } from '@angular/common';
 
 @Component({
   selector: 'app-cars-page',
@@ -18,7 +18,9 @@ import { NgForOf } from "@angular/common";
 export class CarsPageComponent implements OnInit {
   cars: any[] = [];
   filteredCar: any[] = [];
+  yearSearch: string = '';
   brandSearch: string = '';
+  typeSearch: string = '';
   carsService = inject(CarsService);
 
   constructor() {}
@@ -35,15 +37,12 @@ export class CarsPageComponent implements OnInit {
     });
   }
 
-  filterResults(text: string) {
-    if (!text) {
-      this.filteredCar = this.cars;
-      return;
-    }
-
+  filterResults() {
+    // Filter cars based on multiple criteria
     this.filteredCar = this.cars.filter(car =>
-      car?.man_date.toLowerCase().includes(text.toLowerCase())
+      (!this.yearSearch || car?.man_date.toLowerCase().includes(this.yearSearch.toLowerCase())) &&
+      (!this.brandSearch || car?.brand.toLowerCase().includes(this.brandSearch.toLowerCase())) &&
+      (!this.typeSearch || car?.type.toLowerCase().includes(this.typeSearch.toLowerCase()))
     );
   }
-
 }

@@ -17,7 +17,7 @@
         <div class="col-md-4">
           <div class="booking-cta">
             <h1>Book Your Car Now!</h1>
-            <p> Choose from a variety of rental cars to suit your needs and budget. Enjoy the freedom to explore at your own pace with our convenient car rental options</p>
+            <p>Choose from a variety of rental cars to suit your needs and budget. Enjoy the freedom to explore at your own pace with our convenient car rental options.</p>
           </div>
         </div>
         <div class="col-md-7 col-md-offset-1">
@@ -27,13 +27,13 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <span class="form-label">Year of manufacture</span>
-                    <input class="form-control" type="text" placeholder="Year" #filter>
+                    <input class="form-control" type="text" placeholder="Year" [(ngModel)]="yearSearch" name="yearSearch">
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
                     <span class="form-label">Brand</span>
-                    <input class="form-control" type="text" placeholder="Brand" >
+                    <input class="form-control" type="text" placeholder="Brand" [(ngModel)]="brandSearch" name="brandSearch">
                   </div>
                 </div>
               </div>
@@ -41,12 +41,12 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <span class="form-label">Type</span>
-                    <input class="form-control" type="text" required placeholder="Manual OR Automate">
+                    <input class="form-control" type="text" placeholder="Manual OR Automatic" [(ngModel)]="typeSearch" name="typeSearch">
                   </div>
                 </div>
               </div>
               <div class="form-btn">
-                <button class="submit-btn" (click)="filterResults(filter.value)" >Show Cars</button>
+                <button type="button" class="submit-btn" (click)="filterResults()">Show Cars</button>
               </div>
             </form>
           </div>
@@ -55,12 +55,14 @@
     </div>
   </div>
 </div>
+
 <div class="container">
   <div class="row">
-    <div class="col-md-4 col-sm-6" *ngFor="let car of cars">
+    <div class="col-md-4 col-sm-6" *ngFor="let car of filteredCar">
       <app-car-blocks [carData]="car"></app-car-blocks>
     </div>
   </div>
 </div>
 </body>
+
 </html>
