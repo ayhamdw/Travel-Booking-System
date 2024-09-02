@@ -26,35 +26,24 @@
           <div class="booking-form">
             <form>
               <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-6">
                   <div class="form-group">
-                    <input class="form-control" type="email">
+                    <input class="form-control" type="text" [(ngModel)]="address" name="address">
                     <span class="form-label">Location</span>
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
                   <div class="form-group">
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="number" min="1" max="5" [(ngModel)]="rating" name="rating">
                     <span class="form-label">Rating</span>
                   </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-12">
                   <div class="form-group">
-                    <span class="form-label">Rooms</span>
-                    <select class="form-control">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                    </select>
-                    <span class="select-arrow"></span>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input class="form-control" type="date" required>
-                    <span class="form-label">Check In</span>
+                    <input class="form-control" type="number" min="1" max="10" required [(ngModel)]="numberRoom" name="numberRoom">
+                    <span class="form-label">Number Of Rooms</span>
                   </div>
                 </div>
               </div>
@@ -62,7 +51,7 @@
 
               </div>
               <div class="form-btn">
-                <button class="submit-btn">Book Now</button>
+                <button class="submit-btn" (click)="getFilteredHotels()">Book Now</button>
               </div>
             </form>
           </div>
@@ -74,7 +63,7 @@
 
 <div class="container">
   <div class="row">
-    <div *ngFor="let hotelsData of hotels" class="col-md-4 col-sm-6">
+    <div *ngFor="let hotelsData of filteredHotels" class="col-md-4 col-sm-6">
       <app-hotel-blocks [hotelData]="hotelsData"></app-hotel-blocks>
     </div>
   </div>
