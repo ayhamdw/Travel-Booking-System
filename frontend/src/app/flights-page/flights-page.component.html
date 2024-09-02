@@ -27,13 +27,13 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <span class="form-label">Flying from</span>
-                    <input class="form-control" type="text" placeholder="City or airport">
+                    <input class="form-control" type="text" placeholder="City or airport"  [(ngModel)]="departure" name="departure">
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
                     <span class="form-label">Flyning to</span>
-                    <input class="form-control" type="text" placeholder="City or airport">
+                    <input class="form-control" type="text" placeholder="City or airport" [(ngModel)]="dest" name="dest">
                   </div>
                 </div>
               </div>
@@ -41,12 +41,12 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <span class="form-label">Departing</span>
-                    <input class="form-control" type="date" required>
+                    <input class="form-control" type="date" required [(ngModel)]="departureDate" name="departureDate">
                   </div>
                 </div>
               </div>
               <div class="form-btn">
-                <button class="submit-btn">Show flights</button>
+                <button type="button" class="submit-btn" (click)="getFilteredFlights()">Show flights</button>
               </div>
             </form>
           </div>
@@ -57,7 +57,7 @@
 </div>
 <div class="container">
   <div class="row">
-    <div class="col-md-4 col-sm-6" *ngFor="let flight of flights">
+    <div class="col-md-4 col-sm-6" *ngFor="let flight of filteredFlights">
       <app-flight-blocks [flightData]="flight"></app-flight-blocks>
     </div>
   </div>

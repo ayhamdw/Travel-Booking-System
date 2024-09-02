@@ -39,7 +39,7 @@ export class CarsPageComponent implements OnInit {
 
   filterResults() {
     // Filter cars based on multiple criteria
-    this.filteredCar = this.cars.filter(car =>
+      this.filteredCar = this.cars.filter(car =>
       (!this.yearSearch || car?.man_date.toLowerCase().includes(this.yearSearch.toLowerCase())) &&
       (!this.brandSearch || car?.brand.toLowerCase().includes(this.brandSearch.toLowerCase())) &&
       (!this.typeSearch || car?.type.toLowerCase().includes(this.typeSearch.toLowerCase()))

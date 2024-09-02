@@ -4,11 +4,13 @@ import {RouterOutlet} from "@angular/router";
 import {GetFlightsService} from "../services/get-flights.service";
 import {NgForOf} from "@angular/common";
 import {FlightBlocksComponent} from "../flight-blocks/flight-blocks.component";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-flights-page',
   standalone: true,
   imports: [
+    FormsModule,
     TopNavComponent,
     RouterOutlet,
     NgForOf,
@@ -19,16 +21,31 @@ import {FlightBlocksComponent} from "../flight-blocks/flight-blocks.component";
 })
 export class FlightsPageComponent implements OnInit {
 
-  flights:any = [];
+  flights:any []= [];
+  filteredFlights:any[] = [];
   flightService = inject(GetFlightsService);
+  departure:String = ""
+  dest:String = ""
+  departureDate:String = ""
+
+  ngOnInit(): void {
+    this.getFlights();
+  }
+
   getFlights()  {
     this.flightService.getFlights().subscribe(flights => {
       console.log(flights);
       this.flights = flights; // to pass the flights to the frontend (html page)
+      this.filteredFlights = flights
     });
   }
-
-  ngOnInit(): void {
-    this.getFlights();
+  getFilteredFlights() {
+    this.filteredFlights = this.flights.filter(flight => {
+      return (
+        (!this.departure || flight?.departure.toLowerCase().includes(this.departure.toLowerCase())) &&
+        (!this.dest || flight?.dest.toLowerCase().includes(this.dest.toLowerCase())) &&
+        (!this.departureDate || flight?.departure_date.toLowerCase().includes(this.departureDate.toLowerCase()))
+      );
+    });
   }
 }
